@@ -1,0 +1,12 @@
+// <import controllers
+import getTopPosts  from "./posts_controller/getTopPosts";
+// import controllers>
+
+/**
+ * @description export all controllers
+ */
+export default {
+    posts : {
+        getTopPosts
+    }
+}

@@ -3,6 +3,10 @@ import express from "express";
 import dotenv from 'dotenv';
 // import packages>
 
+// <import routes
+import { postsRoute } from "./routes";
+// import routes>
+
 /**
  * @description create express app
  */
@@ -13,10 +17,12 @@ const app = express();
  */
 dotenv.config();
 
-app.use('/', (req, res, next) => {
-    res.json({
-        hello : "hello from mq project"
-    })
-});
+/**
+ * @description posts route middleware
+ */
+app.use('/posts', postsRoute);
 
+/**
+ * @description listen to port
+ */
 app.listen(process.env.PORT)
