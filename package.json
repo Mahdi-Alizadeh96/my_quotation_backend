@@ -1,0 +1,30 @@
+{
+  "name": "my_quotation_project_backend",
+  "version": "0.0.10",
+  "description": "a project about quotations from famous people and normal people",
+  "main": "app.js",
+  "scripts": {
+    "test": "jest",
+    "start": "nodemon -r esm app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mahdi-Alizadeh96/my_quotation_backend.git"
+  },
+  "keywords": [
+    "quotation",
+    "back_end",
+    "express"
+  ],
+  "author": "Mahdi-Alizadeh96",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Mahdi-Alizadeh96/my_quotation_backend/issues"
+  },
+  "homepage": "https://github.com/Mahdi-Alizadeh96/my_quotation_backend#readme",
+  "dependencies": {
+    "esm": "^3.2.25",
+    "express": "^4.18.2",
+    "nodemon": "^2.0.20"
+  }
+}
