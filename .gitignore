@@ -1,5 +1,6 @@
 # ignore folders
 node_modules
+dist
 
 # igonre files
 package-lock.json
