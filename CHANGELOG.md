@@ -4,4 +4,4 @@
 
 ### Added
 
-- initial project settings for first release
+- initial project settings

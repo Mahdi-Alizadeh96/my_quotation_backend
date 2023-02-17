@@ -3,3 +3,4 @@ node_modules
 
 # igonre files
 package-lock.json
+.env

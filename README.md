@@ -4,6 +4,12 @@
 
 For more help about mongodb installation: [Install MongoDB](https://www.mongodb.com/docs/manual/installation/)
 
+### Also you have to be sure to install typeScript on your system :
+
+```bash
+npm install -g typescript
+```
+
 To get started run :
 
 ```bash
@@ -13,7 +19,7 @@ npm install
 Then :
 
 ```bash
-npm start
+npm run dev
 ```
 
 Then project will be run on : [localhost:8080](http://localhost:8080/)

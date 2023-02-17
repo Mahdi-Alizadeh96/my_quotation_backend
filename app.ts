@@ -1,5 +1,6 @@
 // <import packages
 import express from "express";
+import dotenv from 'dotenv';
 // import packages>
 
 /**
@@ -7,6 +8,10 @@ import express from "express";
  */
 const app = express();
 
+/**
+ * @description run dotenv config for envirement variables
+ */
+dotenv.config();
 
 app.use('/', (req, res, next) => {
     res.json({
@@ -14,4 +19,4 @@ app.use('/', (req, res, next) => {
     })
 });
 
-app.listen(8080);
+app.listen(process.env.PORT)
