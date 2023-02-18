@@ -7,7 +7,7 @@ import controllers  from "../controllers";
 // import controllers>
 
 /**
- * @deprecated create express app for posts route
+ * @description create express app for posts route
  */
 const postsRoute = express();
 
