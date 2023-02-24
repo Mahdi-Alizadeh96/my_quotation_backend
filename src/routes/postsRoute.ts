@@ -13,4 +13,6 @@ const postsRoute = express();
 
 postsRoute.route('/top-posts').get(controllers.posts.getTopPosts);
 
+postsRoute.route('/add-post').post(controllers.posts.postAddPost);
+
 export default postsRoute;

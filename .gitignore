@@ -1,6 +1,7 @@
 # ignore folders
 node_modules
 dist
+.vscode
 
 # igonre files
 package-lock.json

@@ -1,5 +1,13 @@
 # My Quotation Project - Express Backend changelogs
 
+## [0.1.12] - 2023-02-124
+
+### Added
+
+- add middlewares
+- add types
+- add messages
+
 ## [0.1.11] - 2023-02-17
 
 ### Added

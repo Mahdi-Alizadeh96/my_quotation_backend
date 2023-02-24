@@ -5,6 +5,6 @@ import postsRoute from './postsRoute';
 /**
  * @description export all routes
  */
-export {
+export default {
   postsRoute
 }
