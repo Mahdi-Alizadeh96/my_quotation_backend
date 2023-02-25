@@ -36,9 +36,9 @@ app.use(bodyParser.json());
 app.use(middlewares.accessControlAllow);    
 
 /**
- * @description posts route middleware
+ * @description routes middleware
  */
-app.use('/posts', routes.postsRoute);
+app.use('/v1', routes);
 
 /**
  * @description handle errors

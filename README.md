@@ -1,6 +1,6 @@
 # My Quotation Project - Express Backend Readme
 
-### This project is using Express js framework & MongoDb for database. Be sure to mongodb be installed on your machine before run the project.
+### This project is using Express js framework & MongoDb for database. Be sure to mongodb be installed on your machine before run the project
 
 For more help about mongodb installation: [Install MongoDB](https://www.mongodb.com/docs/manual/installation/)
 

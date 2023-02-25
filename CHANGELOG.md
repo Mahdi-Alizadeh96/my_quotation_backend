@@ -1,6 +1,6 @@
 # My Quotation Project - Express Backend changelogs
 
-## [0.1.12] - 2023-02-124
+## [0.1.12] - 2023-02-24
 
 ### Added
 
