@@ -39,7 +39,7 @@ async function patchPost (req: Request, res:Response, next:NextFunction) {
         for (const key of Object.keys(giveFields)) {
 
             /**
-             * @description check for given keys by user are valid and the're in post model
+             * @description check for given keys by client are valid and the're in post model
              */
             if(key in editedPost) {
                 updatedFields[key] = editedPost[key as keyof typeof editedPost]
@@ -48,7 +48,7 @@ async function patchPost (req: Request, res:Response, next:NextFunction) {
         };
 
         /**
-         * @description if no fields are edited return `not modified` status code
+         * @description if no fields are edited return `No Content edited`
          */
         if (Object.keys(updatedFields).length === 0) {
 
