@@ -1,4 +1,6 @@
 {
     "postCreatedSuccessfully" : "Post Created Successfully",
-    "failedToHandleYourRequest" : "Failed to handle your request"
+    "failedToHandleYourRequest" : "Failed to handle your request",
+    "postUpdatedSuccessfully" : "Post Updated Successfully",
+    "noContentUpdated" : "No Content Updated"
 }

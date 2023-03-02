@@ -29,8 +29,7 @@ async function postAddPost (req: Request, res: Response, next: NextFunction) {
 
         const addNewPost = await post.save(); // save post model
 
-        res.status(200).json({
-            status : 201,
+        res.status(201).json({
             message : messages.postCreatedSuccessfully,
             data : addNewPost
         });

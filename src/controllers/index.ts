@@ -1,5 +1,6 @@
 // <import controllers
 import getTopPosts  from "./posts_controller/getTopPosts";
+import patchPost from "./posts_controller/patchPost";
 import postAddPost from "./posts_controller/postAddPost";
 // import controllers>
 
@@ -9,6 +10,7 @@ import postAddPost from "./posts_controller/postAddPost";
 export default {
     posts : {
         getTopPosts,
-        postAddPost
+        postAddPost,
+        patchPost
     }
 }

@@ -11,8 +11,17 @@ import controllers  from "../controllers";
  */
 const postsRoute = express();
 
+/**
+ * @description get top posts by views
+ */
 postsRoute.route('/top-posts').get(controllers.posts.getTopPosts);
 
-postsRoute.route('/add-post').post(controllers.posts.postAddPost);
+/**
+ * @description add, edit post
+ */
+postsRoute.route('/post').post(controllers.posts.postAddPost)
+                        .patch(controllers.posts.patchPost)
+
+
 
 export default postsRoute;
