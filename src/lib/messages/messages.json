@@ -1,8 +1,13 @@
 {
-    "postCreatedSuccessfully" : "Post Created Successfully",
-    "failedToHandleYourRequest" : "Failed to handle your request",
-    "postUpdatedSuccessfully" : "Post Updated Successfully",
-    "noContentUpdated" : "No Content Updated",
-    "postDeletedSuccessfully" : "Post Deleted Successfully",
-    "thisPostIsNotExist" : "This Post Is Not Exist"
+    "global" : {
+        "failedToHandleYourRequest" : "Failed to handle your request"
+    },
+    "posts" : {
+        "postCreatedSuccessfully" : "Post Created Successfully",
+        "failedToCreatePost" : "Failed To Create Post",
+        "noContentUpdated" : "No Content Updated",
+        "postUpdatedSuccessfully" : "Post Updated Successfully",
+        "postDeletedSuccessfully" : "Post Deleted Successfully",
+        "thisPostIsNotExist" : "This Post Is Not Exist"
+    }
 }

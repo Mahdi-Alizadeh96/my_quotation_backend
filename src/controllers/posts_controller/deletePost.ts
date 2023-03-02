@@ -19,7 +19,7 @@ async function deletePost (req: Request, res:Response, next:NextFunction) {
 
     const postId = req.query.id // post id that passed whit query parameter
 
-    let message: string = messages.postDeletedSuccessfully;
+    let message: string = messages.posts.postDeletedSuccessfully;
     let statusCode: number = 200;
     
     try {
@@ -31,13 +31,12 @@ async function deletePost (req: Request, res:Response, next:NextFunction) {
          */
         if(deletePost === null) {
 
-            message = messages.thisPostIsNotExist
+            message = messages.posts.thisPostIsNotExist
             
             statusCode = 400;
 
             throw new Error;
         };
-
 
         res.status(statusCode).json({
             message : message,

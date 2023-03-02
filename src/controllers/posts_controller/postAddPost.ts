@@ -25,19 +25,25 @@ async function postAddPost (req: Request, res: Response, next: NextFunction) {
         postContent
     });
 
+    let message: string = messages.posts.postCreatedSuccessfully;
+    let statusCode: number = 200;
+
     try {
 
-        const addNewPost = await post.save(); // save post model
+        const addNewPost = await post.save();
 
-        res.status(201).json({
-            message : messages.postCreatedSuccessfully,
+        res.status(statusCode).json({
+            message : message,
             data : addNewPost
         });
         
-    } catch (error: any) {
+    } catch (error) {
+
+        message = messages.posts.failedToCreatePost;
+        statusCode = 400;
         
         next({
-            message : error._message,
+            message : message,
             status : 400
         })
 

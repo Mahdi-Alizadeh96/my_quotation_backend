@@ -20,7 +20,7 @@ async function patchPost (req: Request, res:Response, next:NextFunction) {
     const postId = req.query.id // post id that passed whit query parameter
     const giveFields = req.body // fields that passed by client for updating them
 
-    let message: string = messages.postUpdatedSuccessfully;
+    let message: string = messages.posts.postUpdatedSuccessfully;
     let statusCode: number = 200;
     
     try {
@@ -52,7 +52,7 @@ async function patchPost (req: Request, res:Response, next:NextFunction) {
          */
         if (Object.keys(updatedFields).length === 0) {
 
-            message = messages.noContentUpdated;
+            message = messages.posts.noContentUpdated;
 
             statusCode = 204
 

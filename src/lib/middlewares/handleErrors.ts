@@ -13,12 +13,12 @@ import messages from '../messages/messages.json'
  */
 export async function handleErrors (error: Error ,req: Request, res: Response, next: NextFunction) {
     
-    const errorMessage: string = error.message || messages.failedToHandleYourRequest; // send default message
+    const errorMessage: string = error.message || messages.global.failedToHandleYourRequest; // send default message
 
     const statusCode: number = error.status || 500 // send 500 status code as default
 
     res.status(statusCode).json({
         message : errorMessage
-    })
+    });
 
 };
