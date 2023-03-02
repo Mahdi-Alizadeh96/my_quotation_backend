@@ -14,14 +14,14 @@ const postsRoute = express();
 /**
  * @description get top posts by views
  */
-postsRoute.route('/top-posts').get(controllers.posts.getTopPosts);
+postsRoute.route('/latest-posts').get(controllers.posts.getLatestPosts);
 
 /**
  * @description add, edit and delete post
  */
-postsRoute.route('/post').post(controllers.posts.postAddPost)
-                        .patch(controllers.posts.patchPost)
-                        .delete(controllers.posts.deletePost)
+postsRoute.route('/post')   .post(controllers.posts.postAddPost)
+                            .patch(controllers.posts.patchPost)
+                            .delete(controllers.posts.deletePost)
 
 
 

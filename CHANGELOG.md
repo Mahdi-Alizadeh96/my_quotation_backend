@@ -1,11 +1,12 @@
 # My Quotation Project - Express Backend changelogs
 
-## [0.1.12] - 2023-03-02
+## [0.1.13] - 2023-03-03
 
 ### Added
 
 - add edit post api
 - add delete post api
+- add newest posts api
 
 ## [0.1.12] - 2023-02-24
 

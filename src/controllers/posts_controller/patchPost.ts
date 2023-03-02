@@ -25,7 +25,7 @@ async function patchPost (req: Request, res:Response, next:NextFunction) {
     
     try {
         
-        const editedPost = await postModel.findOneAndUpdate({_id : postId}, giveFields, {new : true, upsert: true,});
+        const editedPost = await postModel.findOneAndUpdate({_id : postId}, giveFields, {new : true, upsert: true});
 
         interface UpdatedFields {
             [key: string]: string
@@ -37,7 +37,6 @@ async function patchPost (req: Request, res:Response, next:NextFunction) {
          * @description database query return back all fields for edited post. we have to response those files that are edited.
          */
         for (const key of Object.keys(giveFields)) {
-
             /**
              * @description check for given keys by client are valid and the're in post model
              */
@@ -51,11 +50,8 @@ async function patchPost (req: Request, res:Response, next:NextFunction) {
          * @description if no fields are edited return `No Content edited`
          */
         if (Object.keys(updatedFields).length === 0) {
-
             message = messages.posts.noContentUpdated;
-
             statusCode = 204
-
         }
 
         res.status(statusCode).json({

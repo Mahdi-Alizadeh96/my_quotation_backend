@@ -1,5 +1,5 @@
 // <import controllers
-import getTopPosts  from "./getTopPosts";
+import getLatestPosts  from "./getTopPosts";
 import patchPost from "./patchPost";
 import postAddPost from "./postAddPost";
 import deletePost from "./deletePost";
@@ -9,7 +9,7 @@ import deletePost from "./deletePost";
  * @description export all controllers
  */
 export default {
-    getTopPosts,
+    getLatestPosts,
     postAddPost,
     patchPost,
     deletePost

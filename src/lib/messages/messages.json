@@ -8,6 +8,8 @@
         "noContentUpdated" : "No Content Updated",
         "postUpdatedSuccessfully" : "Post Updated Successfully",
         "postDeletedSuccessfully" : "Post Deleted Successfully",
-        "thisPostIsNotExist" : "This Post Is Not Exist"
+        "thisPostIsNotExist" : "This Post Is Not Exist",
+        "postsFetchedSuccessfully" : "Posts Fetched Successfully",
+        "noPostsFound" : "No Posts Found"
     }
 }
