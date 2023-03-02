@@ -2,5 +2,7 @@
     "postCreatedSuccessfully" : "Post Created Successfully",
     "failedToHandleYourRequest" : "Failed to handle your request",
     "postUpdatedSuccessfully" : "Post Updated Successfully",
-    "noContentUpdated" : "No Content Updated"
+    "noContentUpdated" : "No Content Updated",
+    "postDeletedSuccessfully" : "Post Deleted Successfully",
+    "thisPostIsNotExist" : "This Post Is Not Exist"
 }

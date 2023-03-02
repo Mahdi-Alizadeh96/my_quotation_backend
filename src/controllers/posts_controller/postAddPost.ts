@@ -37,7 +37,6 @@ async function postAddPost (req: Request, res: Response, next: NextFunction) {
     } catch (error: any) {
         
         next({
-            error : error,
             message : error._message,
             status : 400
         })

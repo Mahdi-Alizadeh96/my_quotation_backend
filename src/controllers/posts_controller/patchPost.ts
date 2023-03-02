@@ -67,8 +67,7 @@ async function patchPost (req: Request, res:Response, next:NextFunction) {
         
         next({
             message : message,
-            status : statusCode,
-            data : error
+            status : statusCode
         })
 
     }

@@ -17,10 +17,11 @@ const postsRoute = express();
 postsRoute.route('/top-posts').get(controllers.posts.getTopPosts);
 
 /**
- * @description add, edit post
+ * @description add, edit and delete post
  */
 postsRoute.route('/post').post(controllers.posts.postAddPost)
                         .patch(controllers.posts.patchPost)
+                        .delete(controllers.posts.deletePost)
 
 
 
