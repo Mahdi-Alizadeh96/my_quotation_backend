@@ -11,8 +11,8 @@ import messages from '../../lib/messages/messages.json';
 // import messages>
 
 /**
- * @param req - edit object request
- * @param res - post edited successfully or failed to edit post
+ * @param req - delete object request
+ * @param res - post deleted successfully or failed to delete post
  * @param next - next middleware
  */
 async function deletePost (req: Request, res:Response, next:NextFunction) {

@@ -5,6 +5,7 @@
 ### Added
 
 - add edit post api
+- add delete post api
 
 ## [0.1.12] - 2023-02-24
 
