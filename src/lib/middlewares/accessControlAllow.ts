@@ -7,7 +7,7 @@ import { Request, Response, NextFunction, } from 'express';
  * @description Access-Control-Allow-Methods : response header specifies one or more methods allowed when accessing a resource in response to a preflight request.
  * @description Access-Control-Allow-Headers : This header is required if the request has an Access-Control-Request-Headers header.
  */
-export async function accessControlAllow (req: Request, res: Response, next: NextFunction) {
+export default async function accessControlAllow (req: Request, res: Response, next: NextFunction) {
 
     res.setHeader('Access-Control-Allow-Origin', '*');
 

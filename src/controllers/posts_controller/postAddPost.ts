@@ -19,18 +19,20 @@ async function postAddPost (req: Request, res: Response, next: NextFunction) {
 
     const {createdBy, quotationsBy, postContent} = req.body;
     
-    const post = new postModel({ // create post model
-        createdBy,
-        quotationsBy,
-        postContent
-    });
-
-    let message: string = messages.posts.postCreatedSuccessfully;
+    let message: string = "";
     let statusCode: number = 200;
-
+    
     try {
 
+        const post = new postModel({ // create post model
+            createdBy,
+            quotationsBy,
+            postContent
+        });
+
         const addNewPost = await post.save();
+
+        message = messages.posts.postCreatedSuccessfully;
 
         res.status(statusCode).json({
             message : message,
@@ -44,7 +46,7 @@ async function postAddPost (req: Request, res: Response, next: NextFunction) {
         
         next({
             message : message,
-            status : 400
+            status : statusCode
         })
 
     }

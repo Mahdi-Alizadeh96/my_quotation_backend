@@ -1,6 +1,8 @@
 // <import controllers
-import { accessControlAllow } from "./accessControlAllow";
-import { handleErrors } from "./handleErrors";
+import accessControlAllow  from "./accessControlAllow";
+import handleErrors from "./handleErrors";
+import validations from "./validations";
+
 // import controllers>
 
 /**
@@ -8,5 +10,6 @@ import { handleErrors } from "./handleErrors";
  */
 export default {
     handleErrors,
-    accessControlAllow
+    accessControlAllow,
+    validations
 }
