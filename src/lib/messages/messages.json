@@ -15,6 +15,39 @@
     },
     "auth" : {
         "userCreatedSuccessfully" : "User Created Successfully",
-        "thisEmailIsUsedBefore" : "This Email Is Used Before"
+        "thisEmailIsUsedBefore" : "This Email Is Used Before",
+        "validation" : {
+            "email" : {
+                "required" : {
+                    "any.required": "Email is required !"
+                },
+                "empty": {
+                    "string.empty": "Email could not be empty !"
+                },
+                "isValid" : {
+                    "string.email": "Email is invalid !"
+                },
+                "max" : {
+                    "string.max": "Email is too long !"
+                }
+            },
+            "password" : {
+                "required" : {
+                    "any.required": "Password is required !"
+                },
+                "empty": {
+                    "string.empty": "Password could not be empty !"
+                },
+                "isValid" : {
+                    "string.pattern.base": "Password must be between 6 to 30 characters and contains at least one letter and one number !"
+                },
+                "max" : {
+                    "string.max": "Password must be under 30 characters !"
+                },
+                "min" : {
+                    "string.min": "Password must be at least 6 characters !"
+                }
+            }
+        }
     }
 }

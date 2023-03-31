@@ -20,9 +20,9 @@ import validations from "../lib/validations";
 const authRoute = express();
 
 /**
- * @description add, edit and delete post
+ * @description create new user
  */
-authRoute.route('/signup').post(controllers.auth.postSignUp);
+authRoute.route('/signup').post(middlewares.validations(validations.authValidation.postSignup), controllers.auth.postSignUp);
 
 
 export default authRoute;
