@@ -21,11 +21,11 @@ const addPost = Joi.object({ // post validation schema
                                                 ...messages.posts.validation.quotationsBy.required,
                                                 }),
     postContent: Joi.string().required().min(5).max(200).messages({
-                                                                ...messages.posts.validation.postContent.empty,
-                                                                ...messages.posts.validation.postContent.required,
-                                                                ...messages.posts.validation.postContent.max,
-                                                                ...messages.posts.validation.postContent.min,
-                                                                })
+                                                ...messages.posts.validation.postContent.empty,
+                                                ...messages.posts.validation.postContent.required,
+                                                ...messages.posts.validation.postContent.max,
+                                                ...messages.posts.validation.postContent.min,
+                                                })
 });
 
 /**
@@ -35,15 +35,15 @@ const addPost = Joi.object({ // post validation schema
  */
 const patchPost = Joi.object({ // post validation schema
     quotationsBy: Joi.string().required().messages({
-                                                    ...messages.posts.validation.quotationsBy.empty,
-                                                    ...messages.posts.validation.quotationsBy.required,
-                                                    }),
+                                        ...messages.posts.validation.quotationsBy.empty,
+                                        ...messages.posts.validation.quotationsBy.required,
+                                        }),
     postContent: Joi.string().required().min(5).max(200).messages({
-                                                                ...messages.posts.validation.postContent.empty,
-                                                                ...messages.posts.validation.postContent.required,
-                                                                ...messages.posts.validation.postContent.max,
-                                                                ...messages.posts.validation.postContent.min,
-                                                                }),
+                                        ...messages.posts.validation.postContent.empty,
+                                        ...messages.posts.validation.postContent.required,
+                                        ...messages.posts.validation.postContent.max,
+                                        ...messages.posts.validation.postContent.min,
+                                        }),
     id: Joi.string().required().messages({
                                         ...messages.posts.validation.id.empty,
                                         ...messages.posts.validation.id.required
