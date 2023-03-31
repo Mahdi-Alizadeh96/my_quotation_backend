@@ -1,5 +1,5 @@
 // <import model
-import postModel from '../../models/postModel';
+import model from '../../models';
 // import model>
 
 // <import types
@@ -22,7 +22,7 @@ async function getLatestPosts (req: Request, res: Response, next: NextFunction) 
 
     try {
 
-        const latestPosts = await postModel.find().sort({ createdAt: -1 }).limit(10); // 10 latest posts
+        const latestPosts = await model.post.find().sort({ createdAt: -1 }).limit(10); // 10 latest posts
 
         let responseLatestPosts : Array<object> | null = latestPosts;
 

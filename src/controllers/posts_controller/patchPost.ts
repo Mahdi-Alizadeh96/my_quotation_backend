@@ -1,5 +1,5 @@
 // <import model
-import postModel from '../../models/postModel';
+import model from '../../models';
 // import model>
 
 // <import types
@@ -38,7 +38,7 @@ async function patchPost (req: Request, res:Response, next:NextFunction) {
             message = checkId.message;
         }
 
-        const editedPost = await postModel.findOneAndUpdate({_id : postId}, giveFields, {new : true, upsert: true});
+        const editedPost = await model.post.findOneAndUpdate({_id : postId}, giveFields, {new : true, upsert: true});
 
         interface UpdatedFields {
             [key: string]: string

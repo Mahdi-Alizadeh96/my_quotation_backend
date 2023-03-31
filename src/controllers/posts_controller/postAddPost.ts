@@ -1,5 +1,5 @@
 // <import model
-import postModel from '../../models/postModel';
+import model from '../../models';
 // import model>
 
 // <import types
@@ -24,7 +24,7 @@ async function postAddPost (req: Request, res: Response, next: NextFunction) {
     
     try {
 
-        const post = new postModel({ // create post model
+        const post = new model.post({ // create post model
             createdBy,
             quotationsBy,
             postContent

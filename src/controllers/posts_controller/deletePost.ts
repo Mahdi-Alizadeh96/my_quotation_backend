@@ -1,5 +1,5 @@
 // <import model
-import postModel from '../../models/postModel';
+import model from '../../models';
 // import model>
 
 // <import types
@@ -37,7 +37,7 @@ async function deletePost (req: Request, res:Response, next:NextFunction) {
             message = checkId.message;
         }
         
-        const deletePost = await postModel.findByIdAndRemove(postId);
+        const deletePost = await model.post.findByIdAndRemove(postId);
 
         message = messages.posts.postDeletedSuccessfully;
         statusCode = 200;
