@@ -29,7 +29,7 @@ postsRoute.route('/latest-posts').get(controllers.posts.getLatestPosts);
  */
 postsRoute.route('/post')   .post(middlewares.validations(validations.postsValidation.addPost), controllers.posts.postAddPost)
                             .patch(middlewares.validations(validations.postsValidation.patchPost), controllers.posts.patchPost)
-                            .delete(controllers.posts.deletePost)
+                            .delete(middlewares.validations(validations.postsValidation.deletePost), controllers.posts.deletePost)
 
 
 

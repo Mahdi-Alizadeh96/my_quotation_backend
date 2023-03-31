@@ -24,7 +24,15 @@ const patchPost = Joi.object({ // post validation schema
     id: Joi.string().required()
 });
 
+/**
+ * @key id --> query
+ */
+const deletePost = Joi.object({ // post validation schema
+    id: Joi.string().required()
+});
+
 export default {
     addPost,
-    patchPost
+    patchPost,
+    deletePost
 };
