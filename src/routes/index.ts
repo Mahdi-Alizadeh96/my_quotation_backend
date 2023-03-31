@@ -3,7 +3,7 @@ import express from 'express';
 // import packages>
 
 // <import routes
-import postsRoute from './postsRoute';
+import postsRoute from './posts.route';
 import authRoute from './auth.route';
 // import routes>
 

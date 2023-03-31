@@ -17,7 +17,7 @@ import messages from '../../lib/messages/messages.json';
  */
 async function postAddPost (req: Request, res: Response, next: NextFunction) {
 
-    const {createdBy, quotationsBy, postContent} = req.body;
+    const {createdBy, quotationsBy, postContent, creatorId} = req.body;
     
     let message: string | null = null;
     let statusCode: number | null = null;
@@ -27,17 +27,21 @@ async function postAddPost (req: Request, res: Response, next: NextFunction) {
         const post = new model.post({ // create post model
             createdBy,
             quotationsBy,
-            postContent
+            postContent,
+            creatorId
         });
 
         const addNewPost = await post.save();
+
+        const userPosts = await model.post.find({creatorId}).populate('creatorId');
 
         message = messages.posts.postCreatedSuccessfully;
         statusCode = 200;
 
         res.status(statusCode).json({
             message : message,
-            data : addNewPost
+            data : addNewPost,
+            userPosts
         });
         
     } catch (error) {

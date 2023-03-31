@@ -56,6 +56,10 @@
     "auth" : {
         "userCreatedSuccessfully" : "User Created Successfully",
         "thisEmailIsUsedBefore" : "This Email Is Used Before",
+        "loginSuccessfully" : "Login Successfully",
+        "emailIsInvalid" : "Email Is Invalid",
+        "passwordIsIncorrect" : "Password Is Incorrect",
+        "tokenIsInvalid" : "Token Is Invalid",
         "validation" : {
             "email" : {
                 "required" : {

@@ -24,5 +24,9 @@ const authRoute = express();
  */
 authRoute.route('/signup').post(middlewares.validations(validations.authValidation.postSignup), controllers.auth.postSignUp);
 
+/**
+ * @description login user
+ */
+authRoute.route('/login').post(controllers.auth.postLogin);
 
 export default authRoute;

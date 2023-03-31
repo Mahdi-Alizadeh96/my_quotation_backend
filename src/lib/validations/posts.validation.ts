@@ -25,7 +25,8 @@ const addPost = Joi.object({ // post validation schema
                                                 ...messages.posts.validation.postContent.required,
                                                 ...messages.posts.validation.postContent.max,
                                                 ...messages.posts.validation.postContent.min,
-                                                })
+                                                }),
+    creatorId: Joi.string().required()
 });
 
 /**

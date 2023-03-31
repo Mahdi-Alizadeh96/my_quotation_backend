@@ -2,6 +2,7 @@
 import accessControlAllow  from "./accessControlAllow";
 import handleErrors from "./handleErrors";
 import validations from "./validations";
+import verifyToken from "./verifyToken";
 // import controllers>
 
 /**
@@ -10,5 +11,6 @@ import validations from "./validations";
 export default {
     handleErrors,
     accessControlAllow,
-    validations
+    validations,
+    verifyToken
 }

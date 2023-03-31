@@ -1,4 +1,5 @@
 // <import controllers
+import postLogin from "./login";
 import postSignUp from "./signUp";
 // import controllers>
 
@@ -6,5 +7,6 @@ import postSignUp from "./signUp";
  * @description export all controllers
  */
 export default {
-    postSignUp
+    postSignUp,
+    postLogin
 };

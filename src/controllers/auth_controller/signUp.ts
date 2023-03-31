@@ -33,9 +33,14 @@ async function postSignUp (req: Request, res: Response, next: NextFunction) {
 
     try {
 
+        /**
+         * @description Hash the password before storing it in the database
+         */
+        const hashedPassword = await utils.bcryptHasher.bcryptPasswordHahser(password);
+
         const user = new model.user({ // create user
             email,
-            password,
+            password : hashedPassword,
             userName
         });
 
