@@ -10,6 +10,10 @@ import { Request, Response, NextFunction } from 'express';
 import messages from '../../lib/messages/messages.json';
 // import messages>
 
+// <import utils
+import utils from '../../lib/utils';
+// import utils>
+
 /**
  * @param req - sign up fields includes email & password
  * @param res - send success or failure in sign up
@@ -17,10 +21,15 @@ import messages from '../../lib/messages/messages.json';
  */
 async function postSignUp (req: Request, res: Response, next: NextFunction) {
 
-    const { email, password, userName} = req.body
+    const { email, password } = req.body
 
     let message: string | null = null;
-    let statusCode: number | null = 400;
+    let statusCode: number | null = null;
+
+    /**
+     * @description create default user name from email address
+     */
+    const userName = utils.detachNameFromEmail(email);
 
     try {
 
@@ -30,18 +39,25 @@ async function postSignUp (req: Request, res: Response, next: NextFunction) {
             userName
         });
 
-        const addNewUser = await user.save();
+        const addNewUser = await user.save(); // save user model 
 
-        console.log(addNewUser);
+        const response = {
+            email : addNewUser.email,
+            userName : addNewUser.userName
+        };
 
         message = messages.auth.userCreatedSuccessfully;
+        statusCode = 201;
 
         res.status(statusCode).json({
             message : message,
-            data : 0
+            data : response
         });
 
     } catch (error) {
+
+        message = messages.auth.thisEmailIsUsedBefore;
+        statusCode = 400
         
         next({
             message : message,

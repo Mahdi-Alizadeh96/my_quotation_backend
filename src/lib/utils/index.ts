@@ -1,4 +1,5 @@
 // <import utils
+import detachNameFromEmail from "./detachNameFromEmail";
 import idValidator from "./idValidator";
 // import utils>
 
@@ -6,5 +7,6 @@ import idValidator from "./idValidator";
  * @description export all utils
  */
 export default {
-    idValidator
+    idValidator,
+    detachNameFromEmail
 }
