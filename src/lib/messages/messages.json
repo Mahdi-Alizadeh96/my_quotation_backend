@@ -1,6 +1,7 @@
 {
     "global" : {
-        "failedToHandleYourRequest" : "Failed to handle your request"
+        "failedToHandleYourRequest" : "Failed to handle your request",
+        "idIsInvalid" : "Id is invalid"
     },
     "posts" : {
         "postCreatedSuccessfully" : "Post Created Successfully",

@@ -11,9 +11,20 @@ const addPost = Joi.object({ // post validation schema
     createdBy: Joi.string().required(),
     quotationsBy: Joi.string().required(),
     postContent: Joi.string().required().min(5).max(200)
-})
+});
 
+/**
+ * @key quotationsBy --> body
+ * @key postContent --> body
+ * @key id --> query
+ */
+const patchPost = Joi.object({ // post validation schema
+    quotationsBy: Joi.string().required(),
+    postContent: Joi.string().required().min(5).max(200),
+    id: Joi.string().required()
+});
 
 export default {
-    addPost
+    addPost,
+    patchPost
 };
