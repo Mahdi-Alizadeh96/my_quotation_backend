@@ -19,8 +19,8 @@ async function postAddPost (req: Request, res: Response, next: NextFunction) {
 
     const {createdBy, quotationsBy, postContent} = req.body;
     
-    let message: string = "";
-    let statusCode: number = 200;
+    let message: string | null = null;
+    let statusCode: number | null = null;
     
     try {
 
@@ -33,6 +33,7 @@ async function postAddPost (req: Request, res: Response, next: NextFunction) {
         const addNewPost = await post.save();
 
         message = messages.posts.postCreatedSuccessfully;
+        statusCode = 200;
 
         res.status(statusCode).json({
             message : message,
