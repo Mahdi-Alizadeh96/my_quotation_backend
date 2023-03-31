@@ -1,5 +1,5 @@
 // <import controllers
-import posts from "./posts_controller";
+import posts from "./post_controller";
 import auth from "./auth_controller";
 // import controllers>
 
