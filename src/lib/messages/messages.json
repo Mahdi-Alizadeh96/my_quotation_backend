@@ -11,7 +11,47 @@
         "postDeletedSuccessfully" : "Post Deleted Successfully",
         "thisPostIsNotExist" : "This Post Is Not Exist",
         "postsFetchedSuccessfully" : "Posts Fetched Successfully",
-        "noPostsFound" : "No Posts Found"
+        "noPostsFound" : "No Posts Found",
+        "validation" : {
+            "createdBy" : {
+                "required" : {
+                    "any.required": "Created By is required !"
+                },
+                "empty": {
+                    "string.empty": "Created By could not be empty !"
+                }
+            },
+            "quotationsBy" : {
+                "required" : {
+                    "any.required": "Quotations By is required !"
+                },
+                "empty": {
+                    "string.empty": "Quotations By could not be empty !"
+                }
+            },
+            "postContent" : {
+                "required" : {
+                    "any.required": "Post Content is required !"
+                },
+                "empty": {
+                    "string.empty": "Post Content could not be empty !"
+                },
+                "max" : {
+                    "string.max": "Post Content must be under 200 characters !"
+                },
+                "min" : {
+                    "string.min": "Post Content must be at least 5 characters !"
+                }
+            },
+            "id" : {
+                "required" : {
+                    "any.required": "Id is required !"
+                },
+                "empty": {
+                    "string.empty": "Id could not be empty !"
+                }
+            }
+        }
     },
     "auth" : {
         "userCreatedSuccessfully" : "User Created Successfully",
