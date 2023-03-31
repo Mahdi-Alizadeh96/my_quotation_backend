@@ -12,5 +12,8 @@
         "thisPostIsNotExist" : "This Post Is Not Exist",
         "postsFetchedSuccessfully" : "Posts Fetched Successfully",
         "noPostsFound" : "No Posts Found"
+    },
+    "auth" : {
+        "userCreatedSuccessfully" : "User Created Successfully"
     }
 }

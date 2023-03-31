@@ -4,6 +4,7 @@ import express from 'express';
 
 // <import routes
 import postsRoute from './postsRoute';
+import authRoute from './auth.route';
 // import routes>
 
 const router = express.Router();
@@ -12,6 +13,10 @@ const routes = [
   {
     path : "/posts",
     route : postsRoute
+  },
+  {
+    path : "/auth",
+    route : authRoute
   }
 ]
 
