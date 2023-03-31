@@ -27,7 +27,7 @@ postsRoute.route('/latest-posts').get(controllers.posts.getLatestPosts);
 /**
  * @description add, edit and delete post
  */
-postsRoute.route('/post')   .post(middlewares.validations(validations.postsValidation.addPost.body), controllers.posts.postAddPost)
+postsRoute.route('/post')   .post(middlewares.validations(validations.postsValidation.addPost), controllers.posts.postAddPost)
                             .patch(controllers.posts.patchPost)
                             .delete(controllers.posts.deletePost)
 
