@@ -1,5 +1,15 @@
 # My Quotation Project - Express Backend changelogs
 
+## [0.1.20] - 2023-04-01
+
+### Added
+
+- add user model
+- add auth api
+- add authentication
+- add jwt authorization
+- add joi validation
+
 ## [0.1.13] - 2023-03-03
 
 ### Added
