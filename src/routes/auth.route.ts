@@ -27,6 +27,6 @@ authRoute.route('/signup').post(middlewares.validations(validations.authValidati
 /**
  * @description login user
  */
-authRoute.route('/login').post(controllers.auth.postLogin);
+authRoute.route('/login').post(middlewares.validations(validations.authValidation.postLogin), controllers.auth.postLogin);
 
 export default authRoute;
