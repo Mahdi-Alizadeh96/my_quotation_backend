@@ -12,10 +12,6 @@ import messages from '../messages/messages.json'
  * @key postContent --> body
  */
 const addPost = Joi.object({ // post validation schema
-    createdBy: Joi.string().required().messages({
-                                                ...messages.posts.validation.createdBy.empty,
-                                                ...messages.posts.validation.createdBy.required,
-                                                }),
     quotationsBy: Joi.string().required().messages({
                                                 ...messages.posts.validation.quotationsBy.empty,
                                                 ...messages.posts.validation.quotationsBy.required,
@@ -25,8 +21,7 @@ const addPost = Joi.object({ // post validation schema
                                                 ...messages.posts.validation.postContent.required,
                                                 ...messages.posts.validation.postContent.max,
                                                 ...messages.posts.validation.postContent.min,
-                                                }),
-    creatorId: Joi.string().required()
+                                                })
 });
 
 /**

@@ -15,20 +15,21 @@ import utils from '../utils';
  */
 export default async function verifyToken (req: Request, res: Response, next: NextFunction) {
 
-    const token = req.get('Authorization')?.split(' ')[1];
-
     let message: string | null = null;
     let statusCode: number = 401;
+
+    const token = req.get('Authorization')?.split(' ')[1]; 
 
     try {
 
         if(token) {
 
+            message = messages.auth.tokenIsInvalid;
+            
             const decodeToken = utils.jwtAuthorization.jwtVerifyToken(token);   
 
             if (!decodeToken) {
 
-                message = messages.auth.tokenIsInvalid;
                 throw new Error;
 
             } else {
@@ -39,13 +40,18 @@ export default async function verifyToken (req: Request, res: Response, next: Ne
 
             }
 
-        };
+        } else {
+
+            message = messages.auth.tokenIsRequired;
+            throw new Error;
+
+        }
 
 
     } catch (error) {
 
         next({
-            message : messages.auth.tokenIsInvalid,
+            message : message,
             status : statusCode,
         });
 

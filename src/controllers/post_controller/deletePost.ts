@@ -21,10 +21,12 @@ import utils from '../../lib/utils';
  */
 async function deletePost (req: Request, res:Response, next:NextFunction) {
 
-    const postId = req.query.id // post id that passed whit query parameter
+    const postId : any = req.query.id // post id that passed whit query parameter
 
     let message: string | null = null;
     let statusCode: number | null = 400;
+
+    const { userData } = req.body;
     
     try {
 
@@ -35,29 +37,51 @@ async function deletePost (req: Request, res:Response, next:NextFunction) {
 
         if(!checkId.isValid) {
             message = checkId.message;
-        }
-        
-        const deletePost = await model.post.findByIdAndRemove(postId);
-
-        message = messages.posts.postDeletedSuccessfully;
-        statusCode = 200;
+        };
 
         /**
          * @description throw error if post is not exist
          */
-        if(deletePost === null) {
+        const postExist = await model.post.findById(postId);
+
+        if (!postExist) {
 
             message = messages.posts.thisPostIsNotExist
             
-            statusCode = 400;
+            statusCode = 404;
 
             throw new Error;
+
         };
+        
+        /**
+         * @description check if user have access for do this action
+         */
+        const checkAccessValidation = await utils.userAccessValidator(userData.id, postId);
+        
+        if (!checkAccessValidation) {
+
+            message = messages.posts.youDontHaveAccessToRemoveThisPost;
+
+            statusCode = 403;
+
+            throw new Error;
+
+        };
+
+        /**
+         * @description remove post
+         */
+        await model.post.findByIdAndRemove(postId);
+        
+        message = messages.posts.postDeletedSuccessfully;
+        statusCode = 200;
 
         res.status(statusCode).json({
             message : message,
             data : null
         });
+        
         
     } catch (error) {
          

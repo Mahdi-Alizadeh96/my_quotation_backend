@@ -12,15 +12,8 @@
         "thisPostIsNotExist" : "This Post Is Not Exist",
         "postsFetchedSuccessfully" : "Posts Fetched Successfully",
         "noPostsFound" : "No Posts Found",
+        "youDontHaveAccessToRemoveThisPost" : "You Dont Have Access To Remove This Post",
         "validation" : {
-            "createdBy" : {
-                "required" : {
-                    "any.required": "Created By is required !"
-                },
-                "empty": {
-                    "string.empty": "Created By could not be empty !"
-                }
-            },
             "quotationsBy" : {
                 "required" : {
                     "any.required": "Quotations By is required !"
@@ -60,6 +53,7 @@
         "emailIsInvalid" : "Email Is Invalid",
         "passwordIsIncorrect" : "Password Is Incorrect",
         "tokenIsInvalid" : "Token Is Invalid",
+        "tokenIsRequired" : "Token Is Required",
         "validation" : {
             "email" : {
                 "required" : {

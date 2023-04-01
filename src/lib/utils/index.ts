@@ -3,6 +3,7 @@ import bcryptHasher from "./bcryptHasher";
 import detachNameFromEmail from "./detachNameFromEmail";
 import idValidator from "./idValidator";
 import jwtAuthorization from "./jwtAuthorization";
+import userAccessValidator from "./userAccessValidator";
 // import utils>
 
 /**
@@ -12,5 +13,6 @@ export default {
     idValidator,
     detachNameFromEmail,
     bcryptHasher,
-    jwtAuthorization
+    jwtAuthorization,
+    userAccessValidator
 }
