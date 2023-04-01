@@ -30,13 +30,11 @@ const addPost = Joi.object({ // post validation schema
  * @key id --> query
  */
 const patchPost = Joi.object({ // post validation schema
-    quotationsBy: Joi.string().required().messages({
-                                        ...messages.posts.validation.quotationsBy.empty,
-                                        ...messages.posts.validation.quotationsBy.required,
+    quotationsBy: Joi.string().messages({
+                                        ...messages.posts.validation.quotationsBy.empty
                                         }),
-    postContent: Joi.string().required().min(5).max(200).messages({
+    postContent: Joi.string().min(5).max(200).messages({
                                         ...messages.posts.validation.postContent.empty,
-                                        ...messages.posts.validation.postContent.required,
                                         ...messages.posts.validation.postContent.max,
                                         ...messages.posts.validation.postContent.min,
                                         }),
@@ -44,6 +42,10 @@ const patchPost = Joi.object({ // post validation schema
                                         ...messages.posts.validation.id.empty,
                                         ...messages.posts.validation.id.required
                                         }),
+}).or('quotationsBy', 'postContent').options({
+                                    messages: {
+                                        ...messages.posts.validation.global.oneFieldIsRequired,
+                                    }
 });
 
 /**

@@ -13,7 +13,13 @@
         "postsFetchedSuccessfully" : "Posts Fetched Successfully",
         "noPostsFound" : "No Posts Found",
         "youDontHaveAccessToRemoveThisPost" : "You Dont Have Access To Remove This Post",
+        "youDontHaveAccessToEditThisPost" : "You Dont Have Access To Edit This Post",
         "validation" : {
+            "global" : {
+                "oneFieldIsRequired" : {
+                    "object.missing" : "At least one field is required !"
+                }
+            },
             "quotationsBy" : {
                 "required" : {
                     "any.required": "Quotations By is required !"

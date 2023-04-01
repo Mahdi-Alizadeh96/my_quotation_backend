@@ -21,8 +21,10 @@ import utils from '../../lib/utils';
  */
 async function patchPost (req: Request, res:Response, next:NextFunction) {
 
-    const postId = req.query.id // post id that passed whit query parameter
-    const giveFields = req.body // fields that passed by client for updating them
+    const postId : any = req.query.id // post id that passed whit query parameter
+    const { quotationsBy, postContent, userData } = req.body
+
+    const giveFields = { quotationsBy, postContent };// fields that passed by client for updating them
 
     let message: string | null = null;
     let statusCode: number | null = 400;
@@ -32,17 +34,47 @@ async function patchPost (req: Request, res:Response, next:NextFunction) {
         /**
          * @description check id if is invalid
          */
-        const checkId = utils.idValidator(postId)
+        const checkId = utils.idValidator(postId);
 
         if(!checkId.isValid) {
             message = checkId.message;
-        }
+        };
+
+        /**
+         * @description throw error if post is not exist
+         */
+        const postExist = await model.post.findById(postId);
+
+        if (!postExist) {
+
+            message = messages.posts.thisPostIsNotExist
+            
+            statusCode = 404;
+
+            throw new Error;
+
+        };
+        
+        /**
+         * @description check if user have access for do this action
+         */
+        const checkAccessValidation = await utils.userAccessValidator(userData.id, postId);
+        
+        if (!checkAccessValidation) {
+
+            message = messages.posts.youDontHaveAccessToEditThisPost;
+
+            statusCode = 403;
+
+            throw new Error;
+
+        };
 
         const editedPost = await model.post.findOneAndUpdate({_id : postId}, giveFields, {new : true, upsert: true});
 
         interface UpdatedFields {
             [key: string]: string
-        }
+        };
 
         let updatedFields: UpdatedFields = {};
 
@@ -80,9 +112,9 @@ async function patchPost (req: Request, res:Response, next:NextFunction) {
         next({
             message : message,
             status : statusCode
-        })
+        });
 
-    }
+    };
 };
 
 export default patchPost;
