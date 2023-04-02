@@ -7,6 +7,7 @@ import messages from '../messages/messages.json';
 // import messages>
 
 /**
+ * @description check if given id is a valid mongoose id
  * @param id - id query
  * @returns false if id is invalid
  */
