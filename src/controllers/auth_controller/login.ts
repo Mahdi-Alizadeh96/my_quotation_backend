@@ -34,9 +34,13 @@ async function postLogin (req: Request, res: Response, next: NextFunction) {
         const findUserByEmail = await model.user.findOne({ email });
 
         if (!findUserByEmail) {
+
             message = messages.auth.emailIsInvalid;
+
             statusCode = 401;
+
             throw new Error;
+            
         };
 
         /**

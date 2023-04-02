@@ -22,21 +22,28 @@ const authRoute = express();
 /**
  * @description send otp code
  */
-authRoute.route('/send-otp').post(middlewares.validations(validations.authValidation.postSendOtp), controllers.auth.postSendOtp);
+authRoute.route('/send-otp').post(  middlewares.validations(validations.authValidation.postSendOtp),
+                                    middlewares.checkEmailRegistered,
+                                    controllers.auth.postSendOtp);
 
 /**
  * @description send otp code
  */
-authRoute.route('/verify-otp').post(middlewares.validations(validations.authValidation.postVerifyOtp), controllers.auth.postVerifyOtp);
+authRoute.route('/verify-otp').post(middlewares.validations(validations.authValidation.postVerifyOtp),
+                                    middlewares.checkEmailRegistered,
+                                    controllers.auth.postVerifyOtp);
 
 /**
  * @description create new user
  */
-authRoute.route('/signup').post(middlewares.validations(validations.authValidation.postSignup), controllers.auth.postSignUp);
+authRoute.route('/sign-up').post(   middlewares.validations(validations.authValidation.postSignup),
+                                    middlewares.checkEmailRegistered,
+                                    controllers.auth.postSignUp);
 
 /**
  * @description login user
  */
-authRoute.route('/login').post(middlewares.validations(validations.authValidation.postLogin), controllers.auth.postLogin);
+authRoute.route('/login').post( middlewares.validations(validations.authValidation.postLogin),
+                                controllers.auth.postLogin);
 
 export default authRoute;

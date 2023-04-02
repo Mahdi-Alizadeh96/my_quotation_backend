@@ -46,21 +46,6 @@ async function postSignUp (req: Request, res: Response, next: NextFunction) {
 
     try {
 
-        /**
-         * @description if email is registered before, send user to login
-         */
-        const checkEmailExist = await model.user.findOne({ email });
-
-        if (checkEmailExist) {
-
-            message = messages.auth.thisEmailHasRegisteredBefore;
-            statusCode = 400;
-            responseData.redirect = '/login';
-
-            throw new Error;
-
-        };
-
         const redisClient = createClient(); // create redis connection
 
         await redisClient.connect();
