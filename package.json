@@ -1,6 +1,6 @@
 {
   "name": "my_quotation_project_backend",
-  "version": "0.1.20",
+  "version": "0.1.30",
   "description": "a project about quotations from famous people and normal people",
   "main": "app.js",
   "scripts": {

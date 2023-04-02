@@ -1,4 +1,11 @@
-# My Quotation Project - Express Backend changelogs
+# My Quotation Project - Express Backend Changelogs
+
+## [0.1.30] - 2023-04-02
+
+### Added
+
+- add elasticemail mail server
+- add otp verification
 
 ## [0.1.20] - 2023-04-01
 
