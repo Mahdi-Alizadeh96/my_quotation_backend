@@ -65,6 +65,7 @@
         "emailIsVerifiedSuccessfully" : "Email Is Verified Successfully",
         "otpCodeIsWrong" : "Otp Code Is Wrong",
         "emailIsNotRegistered" : "Email Is Not Registered",
+        "emailIsNotVerified" : "Email Is Not Verified",
         "thisEmailHasRegisteredBefore" : "This Email Has Registered Before",
         "secondsRemainForThisCodeDispatched" : "Seconds Remain For This Code Dispatched",
         "validation" : {

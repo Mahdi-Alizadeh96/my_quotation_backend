@@ -21,7 +21,7 @@ import { createClient } from 'redis';
  */
 async function postVerifyOtp (req: Request, res: Response, next: NextFunction) {
 
-    const { email, otpCode } = req.body
+    const { email, otpCode } = req.body;
 
     const responseData = { // response data for redirect user
         redirect : ""
@@ -48,18 +48,18 @@ async function postVerifyOtp (req: Request, res: Response, next: NextFunction) {
 
         };
 
-        const client = createClient(); // create redis connection
+        const redisClient = createClient(); // create redis connection
 
-        await client.connect();
+        await redisClient.connect();
 
-        client.on("error", (error : string) => {
+        redisClient.on("error", (error : string) => {
 
             console.error(error);
             throw new Error;
 
         });
 
-        const cashedOtpCode = await client.get(email); // get otp code by given email
+        const cashedOtpCode = await redisClient.get(email); // get otp code by given email
 
         /**
          * @description if user email has not otp code
@@ -71,9 +71,7 @@ async function postVerifyOtp (req: Request, res: Response, next: NextFunction) {
 
             responseData.redirect = "/send-otp";
 
-        }
-
-        console.log(cashedOtpCode, otpCode);
+        };
         
         /**
          * @description check otp code
@@ -81,12 +79,14 @@ async function postVerifyOtp (req: Request, res: Response, next: NextFunction) {
         if (cashedOtpCode === otpCode) { // otp code is valid
 
             message = messages.auth.emailIsVerifiedSuccessfully;
+
             statusCode = 200;
 
             responseData.redirect = "/sign-up"; // redirect to sign up
 
-            client.del(email); // remove user email from redis
+            await redisClient.set(email, 'verified'); // change email status to verified
 
+            await redisClient.expire(email, 60 * 10); // expire time increased to 10 minutes
 
         } else {
 
@@ -101,7 +101,7 @@ async function postVerifyOtp (req: Request, res: Response, next: NextFunction) {
             
         };
 
-        client.quit(); // close redis connection
+        redisClient.quit(); // close redis connection
 
         res.status(statusCode).json({
             message : message,

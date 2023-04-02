@@ -55,12 +55,12 @@ async function postSendOtp (req: Request, res: Response, next: NextFunction) {
             throw new Error;
 
         };
-        
-        const client = createClient(); // create redis connection
 
-        await client.connect();
+        const redisClient = createClient(); // create redis connection
 
-        client.on("error", (error : string) => {
+        await redisClient.connect();
+
+        redisClient.on("error", (error : string) => {
             
             console.error(error);
             throw new Error;
@@ -70,17 +70,19 @@ async function postSendOtp (req: Request, res: Response, next: NextFunction) {
         /**
          * @description check if this email had remained expire time
          */
-        const otpExist = await client.get(email);
+        const otpExist = await redisClient.get(email);
 
         if (otpExist) {
 
-           const remainedTime = await client.ttl(email);
+           const remainedTime = await redisClient.ttl(email);
         
             message = `${remainedTime} ${messages.auth.secondsRemainForThisCodeDispatched}`;
 
             data = null
             
             statusCode = 400;
+
+            redisClient.quit();
 
             throw new Error;
             
@@ -91,13 +93,31 @@ async function postSendOtp (req: Request, res: Response, next: NextFunction) {
          */
         const code = Math.floor(Math.random() * 10000).toString().padStart(4, '0');
         
-        console.log(code);
 
-        await client.set(email, code); // save otp code by key of user email
+        /**
+         * @description send otp by email
+         */
+        const sendingOtpEmail = await utils.mailServer.sendOtpByEmail(email, code);
 
-        await client.expire(email, 60); // expire after 60 seconds
+        if (!sendingOtpEmail) {
+
+            message = messages.auth.failedToSendOtpCode;
+
+            statusCode = 400;
+
+            responseData.redirect = '/send-otp';
+
+            redisClient.quit();
+
+            throw new Error;
+
+        };
+
+        await redisClient.set(email, code); // save otp code by key of user email
+
+        await redisClient.expire(email, 60); // expire after 60 seconds
         
-        client.quit(); // close redis connection
+        redisClient.quit(); // close redis connection
 
         message = messages.auth.otpCodeSendSuccessfully;
         statusCode = 200;
