@@ -2,7 +2,7 @@
 
 ## This project is based on Express js framework and MongoDb
 
-### lIbraries that used : [Express.js](https://expressjs.com/) / [Redis](https://redis.io/) / [Mongoose](https://mongoosejs.com/) / [bcrypt.js](https://github.com/dcodeIO/bcrypt.js) / [Joi](https://joi.dev/) / [JWT](https://jwt.io/)
+### Libraries that used : [Express.js](https://expressjs.com/) / [Redis](https://redis.io/) / [Mongoose](https://mongoosejs.com/) / [bcrypt.js](https://github.com/dcodeIO/bcrypt.js) / [Joi](https://joi.dev/) / [JWT](https://jwt.io/)
  
 Be sure to mongodb be installed on your machine before run the project and put your `DATABASE_NAME` connection in `.env`
 
