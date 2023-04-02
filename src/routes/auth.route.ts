@@ -20,6 +20,16 @@ import validations from "../lib/validations";
 const authRoute = express();
 
 /**
+ * @description send otp code
+ */
+authRoute.route('/send-otp').post(middlewares.validations(validations.authValidation.postSendOtp), controllers.auth.postSendOtp);
+
+/**
+ * @description send otp code
+ */
+authRoute.route('/verify-otp').post(middlewares.validations(validations.authValidation.postVerifyOtp), controllers.auth.postVerifyOtp);
+
+/**
  * @description create new user
  */
 authRoute.route('/signup').post(middlewares.validations(validations.authValidation.postSignup), controllers.auth.postSignUp);

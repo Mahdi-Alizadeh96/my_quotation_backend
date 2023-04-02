@@ -60,6 +60,13 @@
         "passwordIsIncorrect" : "Password Is Incorrect",
         "tokenIsInvalid" : "Token Is Invalid",
         "tokenIsRequired" : "Token Is Required",
+        "otpCodeSendSuccessfully" : "OTP Code Send Successfully",
+        "failedToSendOtpCode" : "Failed To Send OTP Code",
+        "emailIsVerifiedSuccessfully" : "Email Is Verified Successfully",
+        "otpCodeIsWrong" : "Otp Code Is Wrong",
+        "emailIsNotRegistered" : "Email Is Not Registered",
+        "thisEmailHasRegisteredBefore" : "This Email Has Registered Before",
+        "secondsRemainForThisCodeDispatched" : "Seconds Remain For This Code Dispatched",
         "validation" : {
             "email" : {
                 "required" : {
@@ -90,6 +97,17 @@
                 },
                 "min" : {
                     "string.min": "Password must be at least 6 characters !"
+                }
+            },
+            "otpCode" : {
+                "required" : {
+                    "any.required": "OTP Code is required !"
+                },
+                "empty": {
+                    "string.empty": "OTP Code could not be empty !"
+                },
+                "isValid" : {
+                    "string.pattern.base": "OTP Code must be 4 length characters and be numbers !"
                 }
             }
         }

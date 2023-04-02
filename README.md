@@ -2,9 +2,11 @@
 
 ### This project is using Express js framework & MongoDb for database. Be sure to mongodb be installed on your machine before run the project
 
-For more help about mongodb installation: [Install MongoDB](https://www.mongodb.com/docs/manual/installation/)
+#### For more help about mongodb installation: [Install MongoDB](https://www.mongodb.com/docs/manual/installation/)
 
-### Also you have to be sure to install typeScript on your system :
+#### You have to install Redis in your machine : [Install Redis](https://redis.io/docs/getting-started/installation/)
+
+#### Also you have to be sure to install typeScript on your system :
 
 ```bash
 npm install -g typescript

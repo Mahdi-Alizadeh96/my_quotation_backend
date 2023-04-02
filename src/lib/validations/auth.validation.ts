@@ -8,6 +8,36 @@ import messages from '../messages/messages.json'
 
 /**
  * @key email --> body
+ */
+const postSendOtp = Joi.object({ // post validation schema
+    email: Joi.string().email().max(320).required().messages({
+                                                                ...messages.auth.validation.email.empty,
+                                                                ...messages.auth.validation.email.isValid,
+                                                                ...messages.auth.validation.email.required,
+                                                                ...messages.auth.validation.email.max
+                                                            }),
+});
+
+/**
+ * @key email --> body
+ * @key otpCode --> body
+ */
+const postVerifyOtp = Joi.object({ // post validation schema
+    email: Joi.string().email().max(320).required().messages({
+                                                                ...messages.auth.validation.email.empty,
+                                                                ...messages.auth.validation.email.isValid,
+                                                                ...messages.auth.validation.email.required,
+                                                                ...messages.auth.validation.email.max
+                                                            }),
+    otpCode: Joi.string().regex(/^\d{4}$/).required().messages({
+                                                                ...messages.auth.validation.otpCode.empty,
+                                                                ...messages.auth.validation.otpCode.isValid,
+                                                                ...messages.auth.validation.otpCode.required
+                                                            }),
+});
+
+/**
+ * @key email --> body
  * @key password --> body
  */
 const postSignup = Joi.object({ // post validation schema
@@ -46,6 +76,8 @@ const postLogin = Joi.object({ // post validation schema
 });
 
 export default {
+    postSendOtp,
+    postVerifyOtp,
     postSignup,
     postLogin
 };

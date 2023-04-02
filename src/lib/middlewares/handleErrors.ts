@@ -17,8 +17,21 @@ export default async function handleErrors (error: Error ,req: Request, res: Res
 
     const statusCode: number = error.status || 500 // send 500 status code as default
 
-    res.status(statusCode).json({
-        message : errorMessage
-    });
+    const data : object | unknown = error.data;
+
+    if (data) { // if data is passed to error handler
+
+        res.status(statusCode).json({
+            message : errorMessage,
+            data
+        });
+
+    } else {
+
+        res.status(statusCode).json({
+            message : errorMessage
+        });
+
+    };
 
 };

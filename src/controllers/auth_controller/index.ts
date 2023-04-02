@@ -1,6 +1,8 @@
 // <import controllers
 import postLogin from "./login";
+import postSendOtp from "./send-otp";
 import postSignUp from "./signUp";
+import postVerifyOtp from "./verify-otp";
 // import controllers>
 
 /**
@@ -8,5 +10,7 @@ import postSignUp from "./signUp";
  */
 export default {
     postSignUp,
-    postLogin
+    postLogin,
+    postSendOtp,
+    postVerifyOtp
 };
