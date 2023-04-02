@@ -1,8 +1,8 @@
 // <import controllers
 import postLogin from "./login";
-import postSendOtp from "./send-otp";
-import postSignUp from "./signUp";
-import postVerifyOtp from "./verify-otp";
+import postSendOtp from "./sendOtp";
+import postSignUp from "./signup";
+import postVerifyOtp from "./verifyOtp";
 // import controllers>
 
 /**
