@@ -4,6 +4,7 @@ import detachNameFromEmail from "./detachNameFromEmail";
 import idValidator from "./idValidator";
 import jwtAuthorization from "./jwtAuthorization";
 import mailServer from "./mailServer";
+import redisHandler from "./redisHandler";
 import userAccessValidator from "./userAccessValidator";
 // import utils>
 
@@ -16,5 +17,6 @@ export default {
     bcryptHasher,
     jwtAuthorization,
     mailServer,
+    redisHandler,
     userAccessValidator
 }

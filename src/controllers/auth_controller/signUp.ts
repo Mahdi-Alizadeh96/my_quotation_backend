@@ -10,10 +10,6 @@ import { Request, Response, NextFunction } from 'express';
 import messages from '../../lib/messages/messages.json';
 // import messages>
 
-// <import packages
-import { createClient } from 'redis';
-// import packages>
-
 // <import utils
 import utils from '../../lib/utils';
 // import utils>
@@ -44,13 +40,11 @@ async function postSignUp (req: Request, res: Response, next: NextFunction) {
      */
     const userName = utils.detachNameFromEmail(email);
 
+    const redisHandler = utils.redisHandler; // add redis handler
+
     try {
 
-        const redisClient = createClient(); // create redis connection
-
-        await redisClient.connect();
-
-        const cashedOtpCode = await redisClient.get(email); // get otp code by given email
+        const cashedOtpCode = await redisHandler.getData(email); // get otp code by given email
 
         if (cashedOtpCode) {
 
@@ -74,14 +68,11 @@ async function postSignUp (req: Request, res: Response, next: NextFunction) {
 
             responseData.redirect = '/send-otp';
 
-            redisClient.quit(); // close redis connection
-
             throw new Error;
+
         };
 
-        await redisClient.del(email) // remove user email from redis
-
-        redisClient.quit(); // close redis connection
+        await redisHandler.deleteData(email); // remove user email from redis
 
         /**
          * @description Hash the password before storing it in the database
@@ -94,7 +85,7 @@ async function postSignUp (req: Request, res: Response, next: NextFunction) {
             userName
         });
 
-        const addNewUser = await user.save(); // save user model 
+        const addNewUser = await user.save(); // save user
 
         const response = {
             email : addNewUser.email,

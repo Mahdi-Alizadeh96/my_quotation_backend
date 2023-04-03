@@ -9,6 +9,10 @@ import mongoose from "mongoose";
 import  middlewares  from "./lib/middlewares";
 // import middlewares>
 
+// <import utils
+import utils from "./lib/utils";
+// import utils>
+
 // <import routes
 import routes from "./routes";
 // import routes>
@@ -17,6 +21,15 @@ import routes from "./routes";
  * @description create express app
  */
 const app = express();
+
+/**
+ * @description create redis client
+ */
+(async () => {
+
+    await utils.redisHandler.createRedisClient()
+
+})();
 
 /**
  * @description run dotenv config for environment variables

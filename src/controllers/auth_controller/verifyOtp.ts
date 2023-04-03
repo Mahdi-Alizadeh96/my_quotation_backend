@@ -14,6 +14,10 @@ import messages from '../../lib/messages/messages.json';
 import { createClient } from 'redis';
 // import packages>
 
+// <import utils
+import utils from '../../lib/utils';
+// import utils>
+
 /**
  * @param req - otp code that send by user
  * @param res - success or failure in verification otp
@@ -31,20 +35,11 @@ async function postVerifyOtp (req: Request, res: Response, next: NextFunction) {
     let statusCode: number | null = 400;
     let data = responseData;
 
+    const redisHandler = utils.redisHandler; // add redis handler
+
     try {
 
-        const redisClient = createClient(); // create redis connection
-
-        await redisClient.connect();
-
-        redisClient.on("error", (error : string) => {
-
-            console.error(error);
-            throw new Error;
-
-        });
-
-        const cashedOtpCode = await redisClient.get(email); // get otp code by given email
+        const cashedOtpCode = await redisHandler.getData(email); // get otp code by given email
 
         /**
          * @description if user email has not otp code
@@ -69,9 +64,9 @@ async function postVerifyOtp (req: Request, res: Response, next: NextFunction) {
 
             responseData.redirect = "/sign-up"; // redirect to sign up
 
-            await redisClient.set(email, 'verified'); // change email status to verified
+            await redisHandler.setData(email, 'verified'); // change email status to verified
 
-            await redisClient.expire(email, 60 * 10); // expire time increased to 10 minutes
+            await redisHandler.setExpire(email, 60 * 10); // expire time increased to 10 minutes
 
         } else {
 
@@ -85,8 +80,6 @@ async function postVerifyOtp (req: Request, res: Response, next: NextFunction) {
             };
             
         };
-
-        redisClient.quit(); // close redis connection
 
         res.status(statusCode).json({
             message : message,
