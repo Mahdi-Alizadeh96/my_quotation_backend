@@ -2,6 +2,7 @@
 node_modules
 dist
 .vscode
+logs
 
 # igonre files
 package-lock.json
