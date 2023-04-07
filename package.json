@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest",
     "build": "npx tsc",
-    "start": "nodemon -r esm ./dist/app.js",
+    "start": "./dist/app.js",
     "dev": "concurrently 'npx tsc --watch' 'nodemon -q -r esm dist/app.js'"
   },
   "repository": {
