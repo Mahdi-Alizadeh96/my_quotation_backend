@@ -25,11 +25,10 @@ async function patchPost (req: Request, res:Response, next:NextFunction) {
     const { quotationsBy, postContent, userData } = req.body
 
     const giveFields = { quotationsBy, postContent };// fields that passed by client for updating them
-
-    let message: string | null = null;
-    let statusCode: number | null = 400;
     
     try {
+
+        let message: string | null = null;
 
         /**
          * @description check id if is invalid
@@ -37,7 +36,12 @@ async function patchPost (req: Request, res:Response, next:NextFunction) {
         const checkId = utils.idValidator(postId);
 
         if(!checkId.isValid) {
-            message = checkId.message;
+
+            throw new Error(JSON.stringify({
+                message : checkId.message,
+                status : 400
+            }));
+
         };
 
         /**
@@ -47,11 +51,10 @@ async function patchPost (req: Request, res:Response, next:NextFunction) {
 
         if (!postExist) {
 
-            message = messages.posts.thisPostIsNotExist
-            
-            statusCode = 404;
-
-            throw new Error;
+            throw new Error(JSON.stringify({
+                message : messages.posts.thisPostIsNotExist,
+                status : 404
+            }));
 
         };
         
@@ -62,11 +65,10 @@ async function patchPost (req: Request, res:Response, next:NextFunction) {
         
         if (!checkAccessValidation) {
 
-            message = messages.posts.youDontHaveAccessToEditThisPost;
-
-            statusCode = 403;
-
-            throw new Error;
+            throw new Error(JSON.stringify({
+                message : messages.posts.youDontHaveAccessToEditThisPost,
+                status : 403
+            }));
 
         };
 
@@ -82,37 +84,37 @@ async function patchPost (req: Request, res:Response, next:NextFunction) {
          * @description database query return back all fields for edited post. we have to response those files that are edited.
          */
         for (const key of Object.keys(giveFields)) {
+
             /**
              * @description check for given keys by client are valid and the're in post model
              */
             if(key in editedPost) {
+                
                 updatedFields[key] = editedPost[key as keyof typeof editedPost]
+
             };
 
         };
 
         message = messages.posts.postUpdatedSuccessfully;
-        statusCode = 200;
 
         /**
          * @description if no fields are edited return `No Content edited`
          */
         if (Object.keys(updatedFields).length === 0) {
+
             message = messages.posts.noContentUpdated;
-            statusCode = 200
+
         };
 
-        res.status(statusCode).json({
+        res.status(200).json({
             message : message,
             data : updatedFields
         });
         
     } catch (error) {
         
-        next({
-            message : message,
-            status : statusCode
-        });
+        next(error);
 
     };
 };

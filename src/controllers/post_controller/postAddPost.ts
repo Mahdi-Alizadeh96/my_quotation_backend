@@ -19,9 +19,6 @@ async function postAddPost (req: Request, res: Response, next: NextFunction) {
 
     const { quotationsBy, postContent, userData} = req.body;
     
-    let message: string | null = null;
-    let statusCode: number | null = null;
-    
     try {
 
         const post = new model.post({ // create post model
@@ -38,22 +35,17 @@ async function postAddPost (req: Request, res: Response, next: NextFunction) {
             quotationsBy : addNewPost.quotationsBy,
             postContent : addNewPost.postContent
         };
-        message = messages.posts.postCreatedSuccessfully;
-        statusCode = 200;
 
-        res.status(statusCode).json({
-            message : message,
+        res.status(200).json({
+            message : messages.posts.postCreatedSuccessfully,
             data : responseData
         });
         
     } catch (error) {
-
-        message = messages.posts.failedToCreatePost;
-        statusCode = 400;
         
         next({
-            message : message,
-            status : statusCode
+            message : messages.posts.failedToCreatePost,
+            status : 400
         })
 
     }
