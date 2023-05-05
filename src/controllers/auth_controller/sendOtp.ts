@@ -62,6 +62,8 @@ async function postSendOtp (req: Request, res: Response, next: NextFunction) {
          * @description generate 4 digit length number for otp code
          */
         const code = Math.floor(Math.random() * 10000).toString().padStart(4, '0');
+
+        console.log(code);  
         
         /**
          * @description send otp by email

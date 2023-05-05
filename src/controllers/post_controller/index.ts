@@ -3,6 +3,8 @@ import getLatestPosts  from "./getTopPosts";
 import patchPost from "./patchPost";
 import postAddPost from "./postAddPost";
 import deletePost from "./deletePost";
+import getUserPosts from "./getUserPosts";
+
 // import controllers>
 
 /**
@@ -12,5 +14,6 @@ export default {
     getLatestPosts,
     postAddPost,
     patchPost,
-    deletePost
+    deletePost,
+    getUserPosts
 }

@@ -13,6 +13,8 @@ export default async function accessControlAllow (req: Request, res: Response, n
 
     res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET, POST, PUT, PATCH, DELETE');
 
+    res.setHeader('Access-Control-Expose-Headers', 'Authorization');
+
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 
     next();

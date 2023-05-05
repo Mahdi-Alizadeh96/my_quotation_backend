@@ -25,12 +25,21 @@ const postsRoute = express();
 postsRoute.route('/latest-posts').get(controllers.posts.getLatestPosts);
 
 /**
+ * @description get user posts
+ */
+postsRoute.route('/get-user-posts').get(
+                                        middlewares.verifyToken,
+                                        controllers.posts.getUserPosts
+                                        );
+
+/**
  * @description add, edit and delete post
  */
 postsRoute.route('/post')   .post(  
                                     middlewares.validations(validations.postsValidation.addPost),
                                     middlewares.verifyToken,
-                                    controllers.posts.postAddPost)
+                                    controllers.posts.postAddPost
+                                    )
                             .patch(
                                     middlewares.validations(validations.postsValidation.patchPost),
                                     middlewares.verifyToken,

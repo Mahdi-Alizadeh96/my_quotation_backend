@@ -31,7 +31,7 @@ async function postLogin (req: Request, res: Response, next: NextFunction) {
         /**
          * @description check for email is valid or not
          */
-        const findUserByEmail = await model.user.findOne({ email });
+        const findUserByEmail = await model.user.findOne({ email });  
 
         if (!findUserByEmail) {
 
