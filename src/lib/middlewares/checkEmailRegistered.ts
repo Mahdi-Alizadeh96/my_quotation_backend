@@ -23,7 +23,13 @@ export default async function checkEmailRegistered(req: Request, res: Response, 
     
         if (checkEmailExist) {
     
-            throw new Error;
+            throw new Error(JSON.stringify({
+                message : messages.auth.thisEmailHasRegisteredBefore,
+                status : 400,
+                data : {
+                    redirect : "/login"
+                }
+            }));
     
         };
 
@@ -31,13 +37,7 @@ export default async function checkEmailRegistered(req: Request, res: Response, 
         
     } catch (error) {
         
-        next({
-            message : messages.auth.thisEmailHasRegisteredBefore,
-            status : 400,
-            data : {
-                redirect : "/login"
-            }
-        });
+        next(error);
 
     }
 

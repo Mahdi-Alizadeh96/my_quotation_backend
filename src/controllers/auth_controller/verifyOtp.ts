@@ -10,10 +10,6 @@ import { Request, Response, NextFunction } from 'express';
 import messages from '../../lib/messages/messages.json';
 // import messages>
 
-// <import packages
-import { createClient } from 'redis';
-// import packages>
-
 // <import utils
 import utils from '../../lib/utils';
 // import utils>
@@ -31,8 +27,6 @@ async function postVerifyOtp (req: Request, res: Response, next: NextFunction) {
         redirect : ""
     };
 
-    let message: string | null = null;
-    let statusCode: number | null = 400;
     let data = responseData;
 
     const redisHandler = utils.redisHandler; // add redis handler
@@ -45,11 +39,13 @@ async function postVerifyOtp (req: Request, res: Response, next: NextFunction) {
          * @description if user email has not otp code
          */
         if (!cashedOtpCode) {
-            
-            message = messages.auth.emailIsNotRegistered;
-            statusCode = 401;
 
             responseData.redirect = "/send-otp";
+
+            throw new Error(JSON.stringify({
+                message : messages.auth.emailIsNotRegistered,
+                status : 401
+            }));
 
         };
         
@@ -57,10 +53,6 @@ async function postVerifyOtp (req: Request, res: Response, next: NextFunction) {
          * @description check otp code
          */
         if (cashedOtpCode === otpCode) { // otp code is valid
-
-            message = messages.auth.emailIsVerifiedSuccessfully;
-
-            statusCode = 200;
 
             responseData.redirect = "/sign-up"; // redirect to sign up
 
@@ -72,27 +64,23 @@ async function postVerifyOtp (req: Request, res: Response, next: NextFunction) {
 
             if (cashedOtpCode) { // if otp code is wrong
 
-                message = messages.auth.otpCodeIsWrong;
-                statusCode = 422;
-
-                responseData.redirect = "/";
+                throw new Error(JSON.stringify({
+                    message : messages.auth.otpCodeIsWrong,
+                    status : 422
+                }))
     
             };
             
         };
 
-        res.status(statusCode).json({
-            message : message,
+        res.status(200).json({
+            message : messages.auth.emailIsVerifiedSuccessfully,
             data
         });
 
     } catch (error) {
         
-        next({
-            message : message,
-            status : statusCode,
-            data
-        });
+        next(error);
 
     };
 
