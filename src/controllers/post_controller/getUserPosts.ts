@@ -24,15 +24,30 @@ async function getUserPosts (req: Request, res: Response, next: NextFunction) {
 
     try {
 
-        const userPosts = await model.post.find({creatorId : userId}).populate('creatorId').sort({ createdAt: -1 }).limit(10); // 10 latest posts
+        const fetchUserPosts = await model.post.find({creatorId : userId}).populate('creatorId').sort({ createdAt: -1 }).limit(10); // 10 latest posts
 
         message = messages.posts.postsFetchedSuccessfully;
+
+        const userPosts = fetchUserPosts.map(post => {
+
+            const { _id, createdBy, quotationsBy, postContent } = post;
+
+            return {
+                _id,
+                createdBy,
+                quotationsBy,
+                postContent
+            };
+            
+        });
 
         /**
          * @description no content found
          */
         if(userPosts.length === 0) {
+
             message = messages.posts.noPostsFound;
+            
         };
 
         res.status(statusCode).json({
