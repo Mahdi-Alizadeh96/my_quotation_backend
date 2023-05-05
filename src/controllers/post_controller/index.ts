@@ -4,7 +4,6 @@ import patchPost from "./patchPost";
 import postAddPost from "./postAddPost";
 import deletePost from "./deletePost";
 import getUserPosts from "./getUserPosts";
-
 // import controllers>
 
 /**

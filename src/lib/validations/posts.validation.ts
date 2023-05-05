@@ -11,7 +11,7 @@ import messages from '../messages/messages.json'
  * @key quotationsBy --> body
  * @key postContent --> body
  */
-const addPost = Joi.object({ // post validation schema
+const addPost = Joi.object({
     quotationsBy: Joi.string().required().messages({
                                                 ...messages.posts.validation.quotationsBy.empty,
                                                 ...messages.posts.validation.quotationsBy.required,
@@ -29,7 +29,7 @@ const addPost = Joi.object({ // post validation schema
  * @key postContent --> body
  * @key id --> query
  */
-const patchPost = Joi.object({ // post validation schema
+const patchPost = Joi.object({
     quotationsBy: Joi.string().messages({
                                         ...messages.posts.validation.quotationsBy.empty
                                         }),
@@ -51,7 +51,7 @@ const patchPost = Joi.object({ // post validation schema
 /**
  * @key id --> query
  */
-const deletePost = Joi.object({ // post validation schema
+const deletePost = Joi.object({
     id: Joi.string().required().messages({
                                         ...messages.posts.validation.id.empty,
                                         ...messages.posts.validation.id.required

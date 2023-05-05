@@ -1,6 +1,7 @@
 // <import controllers
 import posts from "./post_controller";
 import auth from "./auth_controller";
+import user from "./user_controller"
 // import controllers>
 
 /**
@@ -8,5 +9,6 @@ import auth from "./auth_controller";
  */
 export default {
     posts,
-    auth
+    auth,
+    user
 }

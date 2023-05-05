@@ -27,16 +27,24 @@ const validations = (schema : Joi.ObjectSchema) => (req: Request, res: Response,
     const checkValidation = schema.validate(validationReq);
     
     try {
+        
         if(!checkValidation.error) {
+
             next();
+
         } else {
-            throw new Error
+
+            throw new Error(JSON.stringify({
+                message : checkValidation.error?.message,
+                status : 400
+            }));
+
         };
+
     } catch (error) {
-        next({
-            message : checkValidation.error?.message ,
-            status : 400
-        });
+
+        next(error);
+
     };
 
 };

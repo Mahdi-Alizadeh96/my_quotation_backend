@@ -13,9 +13,7 @@ import messages from '../messages/messages.json'
  */
 export default async function handleErrors (error: Error ,req: Request, res: Response, next: NextFunction) {
 
-    const errorByFormat = typeof error === 'object' ? error : JSON.parse(error.message);
-
-    const { status, message, data : ErrorData } = errorByFormat;
+    const { status, message, data : ErrorData } = JSON.parse(error.message);
     
     const errorMessage: string = message || messages.global.failedToHandleYourRequest; // send default message
 
