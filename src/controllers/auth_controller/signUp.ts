@@ -31,8 +31,6 @@ async function postSignUp (req: Request, res: Response, next: NextFunction) {
         redirect : ""
     };
 
-    let message: string | null = null;
-    let statusCode: number | null = null;
     let data : responseData | null = responseData;
 
     /**
@@ -49,26 +47,26 @@ async function postSignUp (req: Request, res: Response, next: NextFunction) {
         if (cashedOtpCode) {
 
             if (cashedOtpCode !== 'verified') { // if there is otp code but its not verified
-
-                message = messages.auth.emailIsNotVerified;
-
-                statusCode = 401;
     
                 responseData.redirect = '/verify-otp';
 
-                throw new Error;
+                throw new Error(JSON.stringify({
+                    message : messages.auth.emailIsNotVerified,
+                    status : 401,
+                    data
+                }));
 
             };
 
         } else { // if there is no otp code cashed
 
-            message = messages.auth.emailIsNotRegistered;
-
-            statusCode = 401;
-
             responseData.redirect = '/send-otp';
 
-            throw new Error;
+            throw new Error(JSON.stringify({
+                message : messages.auth.emailIsNotRegistered,
+                status : 401,
+                data
+            }));
 
         };
 
@@ -87,26 +85,17 @@ async function postSignUp (req: Request, res: Response, next: NextFunction) {
 
         const addNewUser = await user.save(); // save user
 
-        const response = {
-            email : addNewUser.email,
-            userName : addNewUser.userName
-        };
-
-        message = messages.auth.userCreatedSuccessfully;
-        statusCode = 201;
-
-        res.status(statusCode).json({
-            message : message,
-            data : response
+        res.status(201).json({
+            message : messages.auth.userCreatedSuccessfully,
+            data : {
+                email : addNewUser.email,
+                userName : addNewUser.userName
+            }
         });
 
     } catch (error) {
         
-        next({
-            message : message,
-            status : statusCode,
-            data
-        });
+        next(error);
 
     };
 
