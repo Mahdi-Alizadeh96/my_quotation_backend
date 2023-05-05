@@ -21,10 +21,7 @@ import utils from '../../lib/utils';
  */
 async function postLogin (req: Request, res: Response, next: NextFunction) {
 
-    const { email, password } = req.body
-
-    let message: string | null = null;
-    let statusCode: number | null = null;
+    const { email, password } = req.body;
 
     try {
 
@@ -35,11 +32,10 @@ async function postLogin (req: Request, res: Response, next: NextFunction) {
 
         if (!findUserByEmail) {
 
-            message = messages.auth.emailIsInvalid;
-
-            statusCode = 401;
-
-            throw new Error;
+            throw new Error(JSON.stringify({
+                message : messages.auth.emailIsInvalid,
+                status : 401
+            }));
             
         };
 
@@ -49,9 +45,12 @@ async function postLogin (req: Request, res: Response, next: NextFunction) {
         const checkPassword = await utils.bcryptHasher.bcryptPasswordCompare(password, findUserByEmail.password);
 
         if(!checkPassword) {
-            message = messages.auth.passwordIsIncorrect;
-            statusCode = 401;
-            throw new Error;
+
+            throw new Error(JSON.stringify({
+                message : messages.auth.passwordIsIncorrect,
+                status : 401
+            }));
+
         };
 
         const tokenData = { //object that passed to include in the token
@@ -65,25 +64,16 @@ async function postLogin (req: Request, res: Response, next: NextFunction) {
          */
         const generateToken = utils.jwtAuthorization.jwtGenerateToken(tokenData);
 
-        message = messages.auth.loginSuccessfully;
-        statusCode = 200;
-
         res.set('Authorization', `Bearer ${generateToken}`);
 
-        res.status(statusCode).json({
-            message : message,
+        res.status(200).json({
+            message : messages.auth.loginSuccessfully,
             data : null
         });
 
     } catch (error) {
-
-        message = message ?? messages.auth.thisEmailIsUsedBefore;
-        statusCode = 400
         
-        next({
-            message : message,
-            status : statusCode,
-        });
+        next(error);
 
     };
 

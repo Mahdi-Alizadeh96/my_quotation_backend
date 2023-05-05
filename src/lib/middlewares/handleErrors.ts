@@ -11,13 +11,15 @@ import messages from '../messages/messages.json'
  * @param error error that passed to the handler
  * @description error handling middleware
  */
-export default async function handleErrors (error: Error ,req: Request, res: Response, next: NextFunction) {
+export default async function handleErrors (error: any ,req: Request, res: Response, next: NextFunction) {
+
+    const { status, message, data : ErrorData } = JSON.parse(error.message);
     
-    const errorMessage: string = error.message || messages.global.failedToHandleYourRequest; // send default message
+    const errorMessage: string = message || messages.global.failedToHandleYourRequest; // send default message
 
-    const statusCode: number = error.status || 500 // send 500 status code as default
+    const statusCode: number = status || 500 // send 500 status code as default
 
-    const data : object | unknown = error.data;
+    const data : object | unknown = ErrorData;
 
     if (data) { // if data is passed to error handler
 
