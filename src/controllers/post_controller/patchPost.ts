@@ -48,7 +48,7 @@ async function patchPost (req: Request, res:Response, next:NextFunction) {
          * @description throw error if post is not exist
          */
         const postExist = await model.post.findById(postId);
-
+        
         if (!postExist) {
 
             throw new Error(JSON.stringify({

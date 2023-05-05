@@ -1,7 +1,12 @@
 {
     "global" : {
         "failedToHandleYourRequest" : "Failed to handle your request",
-        "idIsInvalid" : "Id is invalid"
+        "idIsInvalid" : "Id is invalid",
+        "validation" : {
+            "oneFieldIsRequired" : {
+                "object.missing" : "At least one field is required !"
+            }
+        }
     },
     "posts" : {
         "postCreatedSuccessfully" : "Post Created Successfully",
@@ -114,6 +119,39 @@
         }
     },
     "user" : {
-        "userProfileGetSuccessfully" : "User Profile Get Successfully"
+        "userProfileGetSuccessfully" : "User Profile Get Successfully",
+        "userProfileUpdatedSuccessfully" : "User Profile Updated Successfully",
+        "validation" : {
+            "email" : {
+                "empty": {
+                    "string.empty": "Email could not be empty !"
+                },
+                "isValid" : {
+                    "string.email": "Email is invalid !"
+                },
+                "max" : {
+                    "string.max": "Email is too long !"
+                }
+            },
+            "userName" : {
+                "empty": {
+                    "string.empty": "Username could not be empty !"
+                },
+                "max" : {
+                    "string.max": "Username must be under 20 characters !"
+                },
+                "min" : {
+                    "string.min": "Username must be at least 4 characters !"
+                }
+            },
+            "phoneNumber" : {
+                "empty": {
+                    "string.empty": "Phone Number could not be empty !"
+                },
+                "isValid" : {
+                    "string.pattern.base": "Phone Number must be 11 characters and start with 09 and just digits !"
+                }
+            }
+        }
     }
 }

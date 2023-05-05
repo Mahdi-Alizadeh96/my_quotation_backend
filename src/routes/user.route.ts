@@ -25,6 +25,12 @@ const userRoute = express();
 userRoute.route('/profile').get(
                                 middlewares.verifyToken,
                                 controllers.user.getProfile
-                                );
+                                )
+                            .patch(
+                                middlewares.validations(validations.userValidation.patchProfile),
+                                middlewares.verifyToken,
+                                middlewares.checkEmailRegistered,
+                                controllers.user.patchProfile
+                                )
 
 export default userRoute;

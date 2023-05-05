@@ -1,6 +1,7 @@
 // <import validations
 import postsValidation from "./posts.validation";
 import authValidation from "./auth.validation"
+import userValidation from "./user.validation";
 // import validations>
 
 /**
@@ -8,5 +9,6 @@ import authValidation from "./auth.validation"
  */
 export default {
     postsValidation,
-    authValidation
+    authValidation,
+    userValidation
 }

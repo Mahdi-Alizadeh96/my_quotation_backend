@@ -25,10 +25,7 @@ export default async function checkEmailRegistered(req: Request, res: Response, 
     
             throw new Error(JSON.stringify({
                 message : messages.auth.thisEmailHasRegisteredBefore,
-                status : 400,
-                data : {
-                    redirect : "/login"
-                }
+                status : 400
             }));
     
         };
