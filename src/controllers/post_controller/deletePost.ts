@@ -23,9 +23,6 @@ async function deletePost (req: Request, res:Response, next:NextFunction) {
 
     const postId : any = req.query.id // post id that passed whit query parameter
 
-    let message: string | null = null;
-    let statusCode: number | null = 400;
-
     const { userData } = req.body;
     
     try {
@@ -36,7 +33,12 @@ async function deletePost (req: Request, res:Response, next:NextFunction) {
         const checkId = utils.idValidator(postId)
 
         if(!checkId.isValid) {
-            message = checkId.message;
+
+            throw new Error(JSON.stringify({
+                message : checkId.message,
+                status : 400
+            }));
+
         };
 
         /**
@@ -46,11 +48,10 @@ async function deletePost (req: Request, res:Response, next:NextFunction) {
 
         if (!postExist) {
 
-            message = messages.posts.thisPostIsNotExist
-            
-            statusCode = 404;
-
-            throw new Error;
+            throw new Error(JSON.stringify({
+                message : messages.posts.thisPostIsNotExist,
+                status : 404
+            }));
 
         };
         
@@ -61,11 +62,10 @@ async function deletePost (req: Request, res:Response, next:NextFunction) {
         
         if (!checkAccessValidation) {
 
-            message = messages.posts.youDontHaveAccessToRemoveThisPost;
-
-            statusCode = 403;
-
-            throw new Error;
+            throw new Error(JSON.stringify({
+                message : messages.posts.youDontHaveAccessToRemoveThisPost,
+                status : 403
+            }));
 
         };
 
@@ -73,22 +73,16 @@ async function deletePost (req: Request, res:Response, next:NextFunction) {
          * @description remove post
          */
         await model.post.findByIdAndRemove(postId);
-        
-        message = messages.posts.postDeletedSuccessfully;
-        statusCode = 200;
 
-        res.status(statusCode).json({
-            message : message,
+        res.status(200).json({
+            message : messages.posts.postDeletedSuccessfully,
             data : null
         });
         
         
     } catch (error) {
          
-        next({
-            message : message,
-            status : statusCode,
-        });
+        next(error);
 
     };
 };

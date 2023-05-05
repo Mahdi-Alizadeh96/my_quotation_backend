@@ -16,15 +16,19 @@ export default function idValidator<T>(id : T) {
     const checkValidation = isValidObjectId(id);
     
     if(!checkValidation) {
+
         return {
             isValid : false,
             message : messages.global.idIsInvalid
         };
+
     } else {
+        
         return {
             isValid : true,
             message : ''
         };
+        
     };
 
 }
