@@ -31,8 +31,6 @@ async function postSendOtp (req: Request, res: Response, next: NextFunction) {
         redirect : ""
     };
 
-    let message: string | null = null;
-    let statusCode: number | null = null;
     let data : responseData | null = responseData;
 
     const redisHandler = utils.redisHandler; // add redis handler
@@ -47,16 +45,14 @@ async function postSendOtp (req: Request, res: Response, next: NextFunction) {
         if (otpExist) {
 
            const remainedTime = await redisHandler.getTtl(email);
-        
-            message = `${remainedTime} ${messages.auth.secondsRemainForThisCodeDispatched}`;
 
-            data = null
+            throw new Error(JSON.stringify({
+                message : `${remainedTime} ${messages.auth.secondsRemainForThisCodeDispatched}`,
+                status : 400,
+                data : null
+            }));
             
-            statusCode = 400;
-
-            throw new Error;
-            
-        }
+        };
 
         /**
          * @description generate 4 digit length number for otp code
@@ -72,13 +68,13 @@ async function postSendOtp (req: Request, res: Response, next: NextFunction) {
 
         if (!sendingOtpEmail) {
 
-            message = messages.auth.failedToSendOtpCode;
-
-            statusCode = 400;
-
             responseData.redirect = '/send-otp';
 
-            throw new Error;
+            throw new Error(JSON.stringify({
+                message : messages.auth.failedToSendOtpCode,
+                status : 400,
+                data
+            }));
 
         };
 
@@ -86,25 +82,16 @@ async function postSendOtp (req: Request, res: Response, next: NextFunction) {
 
         await redisHandler.setExpire(email, 60); // expire after 60 seconds
 
-        message = messages.auth.otpCodeSendSuccessfully;
-        statusCode = 200;
         responseData.redirect = '/verify-otp';
 
-        res.status(statusCode).json({
-            message : message,
+        res.status(200).json({
+            message : messages.auth.otpCodeSendSuccessfully,
             data
         });
 
     } catch (error) {
-
-        message = message ?? messages.auth.failedToSendOtpCode;
-        statusCode = 400;
         
-        next({
-            message : message,
-            status : statusCode,
-            data
-        });
+        next(error);
 
     };
 
