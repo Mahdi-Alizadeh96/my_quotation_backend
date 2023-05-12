@@ -31,6 +31,12 @@ userRoute.route('/profile').get(
                                 middlewares.verifyToken,
                                 middlewares.checkEmailRegistered,
                                 controllers.user.patchProfile
+                                );
+
+userRoute.route('/change-password').post(
+                                middlewares.validations(validations.userValidation.postChangePassword),
+                                middlewares.verifyToken,
+                                controllers.user.postChangePassword
                                 )
 
 export default userRoute;

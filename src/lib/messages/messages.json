@@ -121,6 +121,7 @@
     "user" : {
         "userProfileGetSuccessfully" : "User Profile Get Successfully",
         "userProfileUpdatedSuccessfully" : "User Profile Updated Successfully",
+        "passwordChangedSuccessfully" : "Password changed Successfully",
         "validation" : {
             "email" : {
                 "empty": {
@@ -150,6 +151,31 @@
                 },
                 "isValid" : {
                     "string.pattern.base": "Phone Number must be 11 characters and start with 09 and just digits !"
+                }
+            },
+            "oldPassword" : {
+                "required" : {
+                    "any.required": "Password is required !"
+                },
+                "empty": {
+                    "string.empty": "Password could not be empty !"
+                }
+            },
+            "newPassword" : {
+                "required" : {
+                    "any.required": "Password is required !"
+                },
+                "empty": {
+                    "string.empty": "Password could not be empty !"
+                },
+                "isValid" : {
+                    "string.pattern.base": "New Password must be between 6 to 30 characters and contains at least one letter and one number !"
+                },
+                "max" : {
+                    "string.max": "New Password must be under 30 characters !"
+                },
+                "min" : {
+                    "string.min": "New Password must be at least 6 characters !"
                 }
             }
         }

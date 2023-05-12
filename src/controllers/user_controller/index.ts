@@ -1,6 +1,7 @@
 // <import controllers
 import getProfile from "./getProfile";
 import patchProfile from "./patchProfile";
+import postChangePassword from "./postChangePassword";
 // import controllers>
 
 /**
@@ -8,5 +9,6 @@ import patchProfile from "./patchProfile";
  */
 export default {
     getProfile,
-    patchProfile
+    patchProfile,
+    postChangePassword
 }

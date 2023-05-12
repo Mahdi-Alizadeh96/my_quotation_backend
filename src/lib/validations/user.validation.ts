@@ -32,6 +32,21 @@ const patchProfile = Joi.object({
                                     }
 });
 
+const postChangePassword = Joi.object({
+    oldPassword: Joi.string().required().messages({
+                                        ...messages.user.validation.oldPassword.empty,
+                                        ...messages.user.validation.oldPassword.required
+                                        }),
+    newPassword : Joi.string().min(6).max(30).pattern(new RegExp(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,30}$/)).required().messages({
+                                        ...messages.user.validation.newPassword.empty,
+                                        ...messages.user.validation.newPassword.isValid,
+                                        ...messages.user.validation.newPassword.required,
+                                        ...messages.user.validation.newPassword.max,
+                                        ...messages.user.validation.newPassword.min
+                                    }),
+});
+
 export default {
-    patchProfile
+    patchProfile,
+    postChangePassword
 };

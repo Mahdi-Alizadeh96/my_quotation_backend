@@ -17,11 +17,13 @@ export default async function checkEmailRegistered(req: Request, res: Response, 
 
     const { email } = req.body;
 
+    const loggedInEmail = req.body?.userData?.email;
+
     try {
         
         const checkEmailExist = await model.user.findOne({ email });
     
-        if (checkEmailExist) {
+        if (checkEmailExist && loggedInEmail !== email) {
     
             throw new Error(JSON.stringify({
                 message : messages.auth.thisEmailHasRegisteredBefore,

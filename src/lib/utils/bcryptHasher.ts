@@ -23,9 +23,9 @@ async function bcryptPasswordHahser(password: string) {
  * @param dataBasePassword - hashed password stored in database
  * @returns true or false of validation
  */
-async function bcryptPasswordCompare(givenPassword: string, dataBasePassword: string) {
+async function bcryptPasswordCompare(givenPassword: string, dataBasePassword: string | undefined) {
 
-    const isValidPassword = await bcrypt.compare(givenPassword, dataBasePassword);
+    const isValidPassword = await bcrypt.compare(givenPassword, dataBasePassword ?? "");
 
     return isValidPassword;
     
