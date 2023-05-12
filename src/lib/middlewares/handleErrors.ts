@@ -13,25 +13,39 @@ import messages from '../messages/messages.json'
  */
 export default async function handleErrors (error: Error ,req: Request, res: Response, next: NextFunction) {
 
-    const { status, message, data : ErrorData } = JSON.parse(error.message);
+    console.log(error);
+
+    try {
+        
+        const { status, message, data : ErrorData } = JSON.parse(error.message);
     
-    const errorMessage: string = message || messages.global.failedToHandleYourRequest; // send default message
+        const errorMessage: string = message;
+    
+        const statusCode: number = status;
+    
+        const data : object | unknown = ErrorData;
+    
+        if (data) { // if data is passed to error handler
+    
+            res.status(statusCode).json({
+                message : errorMessage,
+                data
+            });
+    
+        } else {
+    
+            res.status(statusCode).json({
+                message : errorMessage
+            });
+    
+        };
 
-    const statusCode: number = status || 500 // send 500 status code as default
+    } catch (error) {
 
-    const data : object | unknown = ErrorData;
-
-    if (data) { // if data is passed to error handler
-
-        res.status(statusCode).json({
-            message : errorMessage,
-            data
-        });
-
-    } else {
-
-        res.status(statusCode).json({
-            message : errorMessage
+        console.log(error);
+        
+        res.status(500).json({
+            message : messages.global.failedToHandleYourRequest
         });
 
     };

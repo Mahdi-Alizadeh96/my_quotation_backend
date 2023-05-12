@@ -12,9 +12,9 @@ import messages from '../messages/messages.json'
  * @key postContent --> body
  */
 const addPost = Joi.object({
-    quotationsBy: Joi.string().required().messages({
-                                                ...messages.posts.validation.quotationsBy.empty,
-                                                ...messages.posts.validation.quotationsBy.required,
+    quoter: Joi.string().required().messages({
+                                                ...messages.posts.validation.quoter.empty,
+                                                ...messages.posts.validation.quoter.required,
                                                 }),
     postContent: Joi.string().required().min(5).max(200).messages({
                                                 ...messages.posts.validation.postContent.empty,
@@ -30,8 +30,8 @@ const addPost = Joi.object({
  * @key id --> query
  */
 const patchPost = Joi.object({
-    quotationsBy: Joi.string().messages({
-                                        ...messages.posts.validation.quotationsBy.empty
+    quoterId: Joi.string().messages({
+                                        ...messages.posts.validation.quoter.empty
                                         }),
     postContent: Joi.string().min(5).max(200).messages({
                                         ...messages.posts.validation.postContent.empty,
@@ -58,8 +58,32 @@ const deletePost = Joi.object({
                                         }),
 });
 
+/**
+ * @key newQuoter --> body
+ */
+const postQuoter = Joi.object({
+    newQuoter: Joi.string().required().min(2).max(20).messages({
+                                                ...messages.posts.validation.postContent.empty,
+                                                ...messages.posts.validation.postContent.required,
+                                                ...messages.posts.validation.postContent.max,
+                                                ...messages.posts.validation.postContent.min,
+                                                })
+});
+
+/**
+ * @key id --> query
+ */
+const getAllQuoters = Joi.object({
+    id: Joi.string().required().messages({
+                                        ...messages.posts.validation.id.empty,
+                                        ...messages.posts.validation.id.required
+                                        }),
+});
+
 export default {
     addPost,
     patchPost,
-    deletePost
+    deletePost,
+    postQuoter,
+    getAllQuoters
 };

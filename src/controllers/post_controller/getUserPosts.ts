@@ -20,7 +20,6 @@ async function getUserPosts (req: Request, res: Response, next: NextFunction) {
     const userId = req.body.userData.id
 
     let message: string | null = null;
-    let statusCode: number = 200;
 
     try {
 
@@ -30,12 +29,12 @@ async function getUserPosts (req: Request, res: Response, next: NextFunction) {
 
         const userPosts = fetchUserPosts.map(post => {
 
-            const { _id, createdBy, quotationsBy, postContent } = post;
+            const { _id, quoter, createdBy, postContent } = post;
 
             return {
                 _id,
+                quoter,
                 createdBy,
-                quotationsBy,
                 postContent
             };
             
@@ -50,7 +49,7 @@ async function getUserPosts (req: Request, res: Response, next: NextFunction) {
             
         };
 
-        res.status(statusCode).json({
+        res.status(200).json({
             message : message,
             data : userPosts
         });

@@ -51,4 +51,23 @@ postsRoute.route('/post')   .post(
                                     controllers.posts.deletePost
                                     );
 
+/**
+ * @description add, edit or delete quoter
+ */
+postsRoute.route('/quoter').post(  
+                                middlewares.validations(validations.postsValidation.postQuoter),
+                                middlewares.verifyToken,
+                                controllers.posts.postQuoter
+                                );
+
+/**
+ * @description get top posts by views
+ */
+postsRoute.route('/get-all-quoter').get(
+                                        middlewares.validations(validations.postsValidation.getAllQuoters),
+                                        middlewares.verifyToken,
+                                        controllers.posts.getAllQuoters
+                                        );
+
+
 export default postsRoute;

@@ -19,18 +19,22 @@
         "noPostsFound" : "No Posts Found",
         "youDontHaveAccessToRemoveThisPost" : "You Dont Have Access To Remove This Post",
         "youDontHaveAccessToEditThisPost" : "You Dont Have Access To Edit This Post",
+        "quoterCreatedSuccessfully" : "Quoter Created Successfully",
+        "thisQuoterWasExistBefore" : "This Quoter Was Exist Before",
+        "allQuotersFetchedSuccessfully" : "All Quoters Fetched Successfully",
+        "noQuotersFound" : "No Quoters Found",
         "validation" : {
             "global" : {
                 "oneFieldIsRequired" : {
                     "object.missing" : "At least one field is required !"
                 }
             },
-            "quotationsBy" : {
+            "quoter" : {
                 "required" : {
-                    "any.required": "Quotations By is required !"
+                    "any.required": "Quoter is required !"
                 },
                 "empty": {
-                    "string.empty": "Quotations By could not be empty !"
+                    "string.empty": "Quoter could not be empty !"
                 }
             },
             "postContent" : {
@@ -53,6 +57,20 @@
                 },
                 "empty": {
                     "string.empty": "Id could not be empty !"
+                }
+            },
+            "newQuoter" : {
+                "required" : {
+                    "any.required": "New Quoter Content is required !"
+                },
+                "empty": {
+                    "string.empty": "New Quoter could not be empty !"
+                },
+                "max" : {
+                    "string.max": "New Quoter must be under 20 characters !"
+                },
+                "min" : {
+                    "string.min": "New Quoter must be at least 2 characters !"
                 }
             }
         }

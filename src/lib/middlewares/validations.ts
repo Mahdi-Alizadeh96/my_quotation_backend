@@ -43,7 +43,7 @@ const validations = (schema : Joi.ObjectSchema) => (req: Request, res: Response,
 
     } catch (error) {
 
-        next(error);
+        next();
 
     };
 

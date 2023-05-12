@@ -10,9 +10,10 @@ const postSchema = new Schema({
         type : String,
         required : true
     },
-    quotationsBy : {
-        type : String,
-        required : true
+    quoter : {
+        type: Schema.Types.ObjectId,
+        required: true,
+        ref: "Quoter"
     },
     postContent : {
         type : String,

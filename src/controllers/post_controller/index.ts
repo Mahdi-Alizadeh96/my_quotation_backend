@@ -4,6 +4,8 @@ import patchPost from "./patchPost";
 import postAddPost from "./postAddPost";
 import deletePost from "./deletePost";
 import getUserPosts from "./getUserPosts";
+import postQuoter from "./postQuoter";
+import getAllQuoters from "./getAllQuoters";
 // import controllers>
 
 /**
@@ -14,5 +16,7 @@ export default {
     postAddPost,
     patchPost,
     deletePost,
-    getUserPosts
+    getUserPosts,
+    postQuoter,
+    getAllQuoters
 }

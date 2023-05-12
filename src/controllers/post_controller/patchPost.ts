@@ -22,9 +22,9 @@ import utils from '../../lib/utils';
 async function patchPost (req: Request, res:Response, next:NextFunction) {
 
     const postId : any = req.query.id // post id that passed whit query parameter
-    const { quotationsBy, postContent, userData } = req.body
+    const { quoter, postContent, userData } = req.body
 
-    const giveFields = { quotationsBy, postContent };// fields that passed by client for updating them
+    const giveFields = { quoter, postContent };// fields that passed by client for updating them
     
     try {
 
@@ -33,7 +33,7 @@ async function patchPost (req: Request, res:Response, next:NextFunction) {
         /**
          * @description check id if is invalid
          */
-        const checkId = utils.idValidator(postId);
+        const checkId = utils.idValidator(quoter);
 
         if(!checkId.isValid) {
 

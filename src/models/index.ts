@@ -1,5 +1,6 @@
 // <import models
 import postModel from "./post.model";
+import quoterModel from "./quoter.model";
 import userModel from "./user.model";
 // import models>
 
@@ -8,5 +9,6 @@ import userModel from "./user.model";
  */
 export default {
     post: postModel,
-    user: userModel
+    user: userModel,
+    quoter: quoterModel
 }
