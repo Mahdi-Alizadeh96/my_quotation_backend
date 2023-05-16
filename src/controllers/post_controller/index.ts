@@ -6,6 +6,7 @@ import deletePost from "./deletePost";
 import getUserPosts from "./getUserPosts";
 import postQuoter from "./postQuoter";
 import getAllQuoters from "./getAllQuoters";
+import getUserQuoters from "./getUserQuoters";
 // import controllers>
 
 /**
@@ -18,5 +19,6 @@ export default {
     deletePost,
     getUserPosts,
     postQuoter,
-    getAllQuoters
+    getAllQuoters,
+    getUserQuoters
 }

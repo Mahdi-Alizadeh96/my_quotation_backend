@@ -61,7 +61,7 @@ postsRoute.route('/quoter').post(
                                 );
 
 /**
- * @description get top posts by views
+ * @description get all quoters
  */
 postsRoute.route('/get-all-quoter').get(
                                         middlewares.validations(validations.postsValidation.getAllQuoters),
@@ -69,5 +69,13 @@ postsRoute.route('/get-all-quoter').get(
                                         controllers.posts.getAllQuoters
                                         );
 
+/**
+ * @description get all quoters
+ */
+postsRoute.route('/get-user-quoters').get(
+                                        // middlewares.validations(validations.postsValidation.getAllQuoters),
+                                        middlewares.verifyToken,
+                                        controllers.posts.getUserQuoters
+                                        );
 
 export default postsRoute;
